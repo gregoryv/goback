@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Golang; Backend development</title>
+<style>html, body {
+margin: 0 0;
+padding: 0 0;
+background-color: #fff;
+}
+.page {
+height: 100vh;
+position: relative;
+margin-bottom: 1vh;
+}
+.page .view {
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 2vh;
+}
+.page .footer {
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+text-align: center;
+height: 2vh;
+}
+.page .view {
+font-size: 2vw;
+margin: 0 0;
+padding: 0 0;
+}
+.page .view .header {
+text-align: center;
+height: 14vh;
+overflow: hidden;
+}
+.header h1, .header h2, .header .group {
+font-weight: bold;
+margin-top: 3vh;
+font-size: 5vh;
+margin-bottom: 0vh;
+}
+.header h3 {
+margin-top: 0vh;
+font-size: 3vh;
+}
+.page .view .slide {
+margin: auto;
+padding: 0.8vw 1.6vw 0.8vw 1.6vw;
+height: 79vh;
+overflow: hidden;
+}
+.page .view .cover {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 82vh;
+text-align: center;
+}
+.toc {
+position: absolute;
+left: 20vw;
+width: 55vw;
+}
+a {
+text-decoration: none;
+color: #000;
+}
+a:hover {
+text-decoration: underline;
+}
+.h3 {
+margin-left: 5vw;
+list-style-type: circle;
+}
+.outline {
+border: 1px solid black;
+}
+.center {
+text-align: center;
+}
+.double {
+}
+.column.left {
+position: absolute;
+left: 4vw;
+width: 40vw;
+}
+.column.right {
+position: absolute;
+left: 50vw;
+width: 40vw;
+}
+.srcfile {
+margin-top: 1.6em;
+margin-bottom: 1.6em;
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAlCAMAAAB1cTk3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAjVBMVEX9/fz4+Pb19fP8/Pz39/Xp6ejr6+rs7Ov29vTt7evo6Oj6+vr7+/vv7+/u7u3v7+37+/ru7uzw8PD////29vbx8fD6+vjq6unz8/L5+ff39/f9/f3y8vHo6Ofx8fHw8O/z8/P6+vn4+Pj09PL+/v729vXp6efy8vDv7+709PTz8/H7+/n8/Pv5+fju7u5JBELWAAAAAWJLR0QB/wIt3gAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+cFHw8tIWAQRK8AAAC5SURBVCjPpZDbEoIgEIaXQLPUNNFOWJrRyQ7v/3gJAs2EFzTuBex+8+/uDwDIiglgGyItJJ4/9YM+DxSczcMowvFCFgmk4lpmVEZeiGolYbCmKjZiQgp4i5C305CVPezOPTVxMLD6wrorj79K0U6kpaQxM0/GPIm5gmdilKise9ZI4UW96HoLGcN3ybpF+hPaomxV+oCn/Ukv4DZMgdqQOkMMb0clG4L5uO3/wAGf3Ll9UJk5Lxpr/gOpxRF8cA+lxgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wNS0zMVQxMzo0NTozMyswMjowMJXHbJYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDUtMzFUMTM6NDU6MzMrMDI6MDDkmtQqAAAAAElFTkSuQmCC);
+background-repeat: repeat-y;
+padding-left: 36px;
+background-color: #fafafa;
+tab-size: 4;
+-moz-tab-size: 4;
+min-width: 35vw;
+font-size: 2vh;
+}
+.srcfile code {
+padding: .6em 0 2vh 0;
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAlCAMAAAB1cTk3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAjVBMVEX9/fz4+Pb19fP8/Pz39/Xp6ejr6+rs7Ov29vTt7evo6Oj6+vr7+/vv7+/u7u3v7+37+/ru7uzw8PD////29vbx8fD6+vjq6unz8/L5+ff39/f9/f3y8vHo6Ofx8fHw8O/z8/P6+vn4+Pj09PL+/v729vXp6efy8vDv7+709PTz8/H7+/n8/Pv5+fju7u5JBELWAAAAAWJLR0QB/wIt3gAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+cFHw8tIWAQRK8AAAC5SURBVCjPpZDbEoIgEIaXQLPUNNFOWJrRyQ7v/3gJAs2EFzTuBex+8+/uDwDIiglgGyItJJ4/9YM+DxSczcMowvFCFgmk4lpmVEZeiGolYbCmKjZiQgp4i5C305CVPezOPTVxMLD6wrorj79K0U6kpaQxM0/GPIm5gmdilKise9ZI4UW96HoLGcN3ybpF+hPaomxV+oCn/Ukv4DZMgdqQOkMMb0clG4L5uO3/wAGf3Ll9UJk5Lxpr/gOpxRF8cA+lxgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wNS0zMVQxMzo0NTozMyswMjowMJXHbJYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDUtMzFUMTM6NDU6MzMrMDI6MDDkmtQqAAAAAElFTkSuQmCC);
+background-repeat: repeat-y;
+background-position: right top;
+display: block;
+text-align: left;
+font-family: Inconsolata, monospace;
+overflow: hidden;
+}
+.srcfile ol {
+margin-left: 1vw;
+}
+.srcfile ol li {
+white-space: pre;
+}
+.srcfile ol li::marker {
+color: RGB(0,0,0,0.2);
+}
+.srcfile ol li:hover {
+background-color: RGB(180,238,180,0.3);
+}
+.srcfile code i {
+font-style: normal;
+color: #a2a2a2;
+}
+.keyword {
+color: darkviolet;
+}
+.type {
+color: dodgerblue;
+}
+.comment, .comment>span {
+color: darkgreen;
+}
+.header {
+background-color: #f6f5f4;
+border-bottom: 1px inset #000;
+}
+.page .footer {
+bottom: 1vh;
+}
+.shell {
+padding: 1em;
+border-radius: 10px;
+min-width: 40vw;
+overflow: wrap;
+}
+.dark {
+background-color: #2e2e34;
+color: aliceblue;
+}
+nav {
+column-count: 2;
+font-size: 0.8em;
+}
+.srcfile ol {
+padding-right: 40px;
+}
+.shell {
+font-size: 0.7em;
+}
+p>a {
+text-decoration: underline;
+}
+quote {
+display: inline-block;
+font-style: italic;
+padding-left: 2vw;
+padding-right: 2vw;
+width: 60vw;
+}
+quote>a {
+font-size: 0.7em;
+float: right;
+}
+</style>
+</head>
+<body>
+<div class="page" id="1"><div class="view"><div class="cover"><table>
+<tr><td><h1>Golang; Backend development</h1>
+</td></tr>
+<tr><td>Gregory Vinčić</td></tr>
+</table>
+</div>
+</div>
+<div class="footer">1/24</div>
+</div>
+<div class="page" id="2"><div class="view"><div class="header"><h2>Golang; Backend development</h2>
+</div>
+<div class="slide"><div class="toc"><nav><ul>
+<li class="h2"><a href="#3">Quick start</a></li>
+<li class="h2"><a href="#4">Concepts</a></li>
+<li class="h3"><a href="#5">module</a></li>
+<li class="h3"><a href="#6">package</a></li>
+<li class="h3"><a href="#7">interface</a></li>
+<li class="h2"><a href="#8">Example</a></li>
+<li class="h3"><a href="#9">Direct</a></li>
+<li class="h3"><a href="#10">Closure</a></li>
+<li class="h3"><a href="#11">Method</a></li>
+<li class="h3"><a href="#12">Combo</a></li>
+<li class="h2"><a href="#13">Route</a></li>
+<li class="h3"><a href="#14">Naive</a></li>
+<li class="h3"><a href="#15">Combo</a></li>
+<li class="h3"><a href="#16">http/ServeMux</a></li>
+<li class="h2"><a href="#17">Encode</a></li>
+<li class="h3"><a href="#18">encoding/json</a></li>
+<li class="h2"><a href="#19">Test</a></li>
+<li class="h3"><a href="#20">http/httptest</a></li>
+<li class="h3"><a href="#21">coverage</a></li>
+<li class="h2"><a href="#22">View</a></li>
+<li class="h3"><a href="#23">html/template</a></li>
+<li class="h3"><a href="#24">embed</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="footer">2/24</div>
+</div>
+<div class="page" id="3"><div class="view"><div class="header"><h2>Quick start</h2>
+</div>
+<div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><p>Download and install Go in the $HOME directory.</p>
+<pre class="shell dark">$ cd $HOME
+$ wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
+$ tar xvfz go1.22.0.linux-amd64.tar.gz
+$ export PATH="$PATH:$HOME/go/bin"
+$ go version
+go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="https://go.dev/doc/install">"Download and install"</a>.</p>
+</div>
+</div>
+</div>
+<div class="footer">3/24</div>
+</div>
+<div class="page" id="4"><div class="view"><div class="header"><h2>Concepts</h2>
+</div>
+<div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><p>In Go; <b>modules</b> are used to group
+			<b>packages</b> and functions.</p>
+<quote>"You can collect related packages into modules, then
+		publish the modules for other developers to use."<br/><a href="https://go.dev/doc/modules/developing">go.dev/doc/modules/developing</a></quote><br/><p>An <b>interface</b> describes behavior.</p>
+<quote>"Interfaces in Go provide a way to specify the
+			  behavior of an object: if something can do this, then it
+			  can be used here."<br/><a href="https://go.dev/doc/effective_go#interfaces_and_types">go.dev/doc/effective_go#interfaces_and_types</a></quote></div>
+</div>
+</div>
+<div class="footer">4/24</div>
+</div>
+<div class="page" id="5"><div class="view"><div class="header"><div class="group">Concepts</div>
+<h3>module</h3>
+</div>
+<div class="slide"></div>
+</div>
+<div class="footer">5/24</div>
+</div>
+<div class="page" id="6"><div class="view"><div class="header"><div class="group">Concepts</div>
+<h3>package</h3>
+</div>
+<div class="slide"></div>
+</div>
+<div class="footer">6/24</div>
+</div>
+<div class="page" id="7"><div class="view"><div class="header"><div class="group">Concepts</div>
+<h3>interface</h3>
+</div>
+<div class="slide"></div>
+</div>
+<div class="footer">7/24</div>
+</div>
+<div class="page" id="8"><div class="view"><div class="header"><h2>Example</h2>
+</div>
+<div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><p>Variations</p>
+</div>
+</div>
+</div>
+<div class="footer">8/24</div>
+</div>
+<div class="page" id="9"><div class="view"><div class="header"><div class="group">Example</div>
+<h3>Direct</h3>
+</div>
+<div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><div class="srcfile"><code><ol>
+<li><span class="keyword">package</span> main</li>
+<li></li>
+<li><span class="keyword">import</span> (</li>
+<li>    "fmt"</li>
+<li>    "log"</li>
+<li>    "net/http"</li>
+<li>)</li>
+<li></li>
+<li><span class="keyword">func</span> main() {</li>
+<li>    err := http.ListenAndServe(":8080", http.HandlerFunc(sayHello))</li>
+<li>    <span class="keyword">if</span> err != nil {</li>
+<li>        log.Fatal(err)</li>
+<li>    }</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">func</span> sayHello(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    fmt.Fprint(w, "Hello, world!")</li>
+<li>}</li>
+<li></li>
+</ol>
+</code></div>
+</div>
+</div>
+</div>
+<div class="footer">9/24</div>
+</div>
+<div class="page" id="10"><div class="view"><div class="header"><div class="group">Example</div>
+<h3>Closure</h3>
+</div>
+<div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><div class="srcfile"><code><ol>
+<li><span class="keyword">package</span> main</li>
+<li></li>
+<li><span class="keyword">import</span> (</li>
+<li>    "fmt"</li>
+<li>    "log"</li>
+<li>    "net/http"</li>
+<li>)</li>
+<li></li>
+<li><span class="keyword">func</span> main() {</li>
+<li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", sayHello()); err != nil {</li>
+<li>        log.Fatal(err)</li>
+<li>    }</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">func</span> sayHello() http.HandlerFunc {</li>
+<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>        fmt.Fprint(w, "Hello, world!")</li>
+<li>    }</li>
+<li>}</li>
+<li></li>
+</ol>
+</code></div>
+</div>
+</div>
+</div>
+<div class="footer">10/24</div>
+</div>
+<div class="page" id="11"><div class="view"><div class="header"><div class="group">Example</div>
+<h3>Method</h3>
+</div>
+<div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><div class="srcfile"><code><ol>
+<li><span class="keyword">package</span> main</li>
+<li></li>
+<li><span class="keyword">import</span> (</li>
+<li>    "fmt"</li>
+<li>    "log"</li>
+<li>    "net/http"</li>
+<li>)</li>
+<li></li>
+<li><span class="keyword">func</span> main() {</li>
+<li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", &Greeter{}); err != nil {</li>
+<li>        log.Fatal(err)</li>
+<li>    }</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">type</span> Greeter <span class="keyword">struct</span>{}</li>
+<li></li>
+<li><span class="keyword">func</span> (g *Greeter) ServeHTTP(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    fmt.Fprint(w, "Hello, world!")</li>
+<li>}</li>
+<li></li>
+</ol>
+</code></div>
+</div>
+</div>
+</div>
+<div class="footer">11/24</div>
+</div>
+<div class="page" id="12"><div class="view"><div class="header"><div class="group">Example</div>
+<h3>Combo</h3>
+</div>
+<div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><div class="srcfile"><code><ol>
+<li><span class="keyword">package</span> main</li>
+<li></li>
+<li><span class="keyword">import</span> (</li>
+<li>    "fmt"</li>
+<li>    "log"</li>
+<li>    "net/http"</li>
+<li>)</li>
+<li></li>
+<li><span class="keyword">func</span> main() {</li>
+<li>    <span class="keyword">var</span> ctl Controller</li>
+<li></li>
+<li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", http.HandlerFunc(<span class="type">ctl.sayHello</span>)); err != nil {</li>
+<li>        log.Fatal(err)</li>
+<li>    }</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">type</span> Controller <span class="keyword">struct</span>{}</li>
+<li></li>
+<li><span class="keyword">func</span> (c *Controller) sayHello(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    fmt.Fprint(w, "Hello, world!")</li>
+<li>}</li>
+<li></li>
+</ol>
+</code></div>
+<p>More on the object oriented design side</p>
+</div>
+</div>
+</div>
+<div class="footer">12/24</div>
+</div>
+<div class="page" id="13"><div class="view"><div class="header"><h2>Route</h2>
+</div>
+<div class="slide"></div>
+</div>
+<div class="footer">13/24</div>
+</div>
+<div class="page" id="14"><div class="view"><div class="header"><div class="group">Route</div>
+<h3>Naive</h3>
+</div>
+<div class="slide"></div>
+</div>
+<div class="footer">14/24</div>
+</div>
+<div class="page" id="15"><div class="view"><div class="header"><div class="group">Route</div>
+<h3>Combo</h3>
+</div>
+<div class="slide"><div class="double"><div class="column left" style="width: 62vw"><div class="srcfile"><code><ol start="9">
+<li><span class="keyword">func</span> main() {</li>
+<li>    <span class="keyword">var</span> ctl Controller</li>
+<li>    http.HandleFunc("GET /", <span class="type">ctl.sayHello</span>)</li>
+<li>    http.HandleFunc("GET /bye", <span class="type">ctl.sayGoodbye</span>)</li>
+<li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", nil); err != nil {</li>
+<li>        log.Fatal(err)</li>
+<li>    }</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">type</span> Controller <span class="keyword">struct</span>{}</li>
+<li></li>
+<li><span class="keyword">func</span> (c *Controller) sayHello(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    fmt.Fprint(w, "Hello, world!")</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">func</span> (c *Controller) sayGoodbye(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    fmt.Fprint(w, "Goodbye, world!")</li>
+<li>}</li>
+<li></li>
+</ol>
+</code></div>
+</div>
+<div class="column right" style="left: 70vw; width: 30vw"><p>Uses package http builtin singleton muxer.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">15/24</div>
+</div>
+<div class="page" id="16"><div class="view"><div class="header"><div class="group">Route</div>
+<h3>http/ServeMux</h3>
+</div>
+<div class="slide"></div>
+</div>
+<div class="footer">16/24</div>
+</div>
+<div class="page" id="17"><div class="view"><div class="header"><h2>Encode</h2>
+</div>
+<div class="slide"></div>
+</div>
+<div class="footer">17/24</div>
+</div>
+<div class="page" id="18"><div class="view"><div class="header"><div class="group">Encode</div>
+<h3>encoding/json</h3>
+</div>
+<div class="slide"></div>
+</div>
+<div class="footer">18/24</div>
+</div>
+<div class="page" id="19"><div class="view"><div class="header"><h2>Test</h2>
+</div>
+<div class="slide"><p></p>
+</div>
+</div>
+<div class="footer">19/24</div>
+</div>
+<div class="page" id="20"><div class="view"><div class="header"><div class="group">Test</div>
+<h3>http/httptest</h3>
+</div>
+<div class="slide"></div>
+</div>
+<div class="footer">20/24</div>
+</div>
+<div class="page" id="21"><div class="view"><div class="header"><div class="group">Test</div>
+<h3>coverage</h3>
+</div>
+<div class="slide"></div>
+</div>
+<div class="footer">21/24</div>
+</div>
+<div class="page" id="22"><div class="view"><div class="header"><h2>View</h2>
+</div>
+<div class="slide"></div>
+</div>
+<div class="footer">22/24</div>
+</div>
+<div class="page" id="23"><div class="view"><div class="header"><div class="group">View</div>
+<h3>html/template</h3>
+</div>
+<div class="slide"><p></p>
+</div>
+</div>
+<div class="footer">23/24</div>
+</div>
+<div class="page" id="24"><div class="view"><div class="header"><div class="group">View</div>
+<h3>embed</h3>
+</div>
+<div class="slide"></div>
+</div>
+<div class="footer">24/24</div>
+</div>
+</body>
+<script>document.addEventListener('keydown', function(event) {
+    if (previousPageKey(event)) {
+	event.preventDefault()		
+	previousPage()
+	return
+    }
+    if (nextPageKey(event)) {
+	event.preventDefault()
+	nextPage()
+	return
+    }
+    if (event.key === 'Home') {
+	pageIndex = 1
+	event.preventDefault()
+	window.location.hash = pageIndex	
+    }
+    if (event.key === 'End') {
+	pageIndex = last
+	event.preventDefault()
+	window.location.hash = pageIndex	
+    }
+    if (event.key === 't') {
+	pageIndex = 2 // toc
+	event.preventDefault()
+	window.location.hash = pageIndex	
+    }
+    return
+})
+
+window.addEventListener('resize', function() {
+    window.location.hash = getPos()
+});
+
+const last = document.querySelectorAll('.page').length;
+
+function previousPage() {
+    let pageIndex = getPos()
+    if (pageIndex > 1) {
+	pageIndex--
+	window.location.hash = pageIndex
+    }
+}
+
+function nextPage() {
+    let pageIndex = getPos()
+    if (pageIndex < last) {
+	pageIndex++
+	window.location.hash = pageIndex
+    }
+}
+
+function previousPageKey(event) {
+    return event.key === 'ArrowLeft' ||
+	    event.key === 'ArrowUp' ||
+	    event.key === 'PageUp'
+}
+
+function nextPageKey(event) {
+    return event.key === 'ArrowRight' ||
+	    event.key === 'ArrowDown' ||
+	    event.key === 'PageDown'
+}
+
+function getPos() {
+    let currentView = window.location.hash
+    if (currentView === '') {
+	currentView = "#1"
+    }
+    return parseInt(currentView.split('#').join(''))
+}
+
+</script>
+</html>
