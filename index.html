@@ -177,11 +177,20 @@ display: inline-block;
 font-style: italic;
 padding-left: 2vw;
 padding-right: 2vw;
-width: 60vw;
 }
 quote>a {
 font-size: 0.7em;
 float: right;
+}
+.pictogram {
+text-align: center;
+}
+.pictogram>label {
+font-style: italic;
+font-size: 0.6em;
+}
+.srcfile {
+font-size: 3vh;
 }
 </style>
 </head>
@@ -193,7 +202,7 @@ float: right;
 </table>
 </div>
 </div>
-<div class="footer">1/24</div>
+<div class="footer">1/25</div>
 </div>
 <div class="page" id="2"><div class="view"><div class="header"><h2>Golang; Backend development</h2>
 </div>
@@ -211,7 +220,7 @@ float: right;
 <li class="h2"><a href="#13">Route</a></li>
 <li class="h3"><a href="#14">Naive</a></li>
 <li class="h3"><a href="#15">Combo</a></li>
-<li class="h3"><a href="#16">http/ServeMux</a></li>
+<li class="h3"><a href="#16">http.ServeMux</a></li>
 <li class="h2"><a href="#17">Encode</a></li>
 <li class="h3"><a href="#18">encoding/json</a></li>
 <li class="h2"><a href="#19">Test</a></li>
@@ -220,12 +229,13 @@ float: right;
 <li class="h2"><a href="#22">View</a></li>
 <li class="h3"><a href="#23">html/template</a></li>
 <li class="h3"><a href="#24">embed</a></li>
+<li class="h2"><a href="#25">Next time</a></li>
 </ul>
 </nav>
 </div>
 </div>
 </div>
-<div class="footer">2/24</div>
+<div class="footer">2/25</div>
 </div>
 <div class="page" id="3"><div class="view"><div class="header"><h2>Quick start</h2>
 </div>
@@ -239,41 +249,73 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer">3/24</div>
+<div class="footer">3/25</div>
 </div>
 <div class="page" id="4"><div class="view"><div class="header"><h2>Concepts</h2>
 </div>
 <div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><p>In Go; <b>modules</b> are used to group
 			<b>packages</b> and functions.</p>
 <quote>"You can collect related packages into modules, then
-		publish the modules for other developers to use."<br/><a href="https://go.dev/doc/modules/developing">go.dev/doc/modules/developing</a></quote><br/><p>An <b>interface</b> describes behavior.</p>
+		publish the modules for other developers to use."<br/><br/><a href="https://go.dev/doc/modules/developing">go.dev/doc/modules/developing</a></quote><br/><p>An <b>interface</b> describes behavior.</p>
 <quote>"Interfaces in Go provide a way to specify the
 			  behavior of an object: if something can do this, then it
-			  can be used here."<br/><a href="https://go.dev/doc/effective_go#interfaces_and_types">go.dev/doc/effective_go#interfaces_and_types</a></quote></div>
+			  can be used here."<br/><br/><a href="https://go.dev/doc/effective_go#interfaces_and_types">go.dev/doc/effective_go#interfaces_and_types</a></quote></div>
 </div>
 </div>
-<div class="footer">4/24</div>
+<div class="footer">4/25</div>
 </div>
 <div class="page" id="5"><div class="view"><div class="header"><div class="group">Concepts</div>
 <h3>module</h3>
 </div>
-<div class="slide"></div>
+<div class="slide"><div class="double"><div class="column left" style="width: 42vw"><p>Modules are initiated using the reposity URL.</p>
+<pre class="shell dark">$ go mod init github.com/gregoryv/uptime</pre><p>This can then be used</p>
+<pre class="shell dark">$ go get github.com/gregoryv/uptime[@VERSION]</pre><p>Find modules on <a href="https://pkg.go.dev">pkg.go.dev</a></p>
 </div>
-<div class="footer">5/24</div>
+<div class="column right" style="left: 50vw; width: 50vw"><p>Sharing code with others requires dependency
+				management.</p>
+<div class="pictogram"><img src="img/module.png"/><br/><label>Pictogram of a Go module</label></div>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">5/25</div>
 </div>
 <div class="page" id="6"><div class="view"><div class="header"><div class="group">Concepts</div>
 <h3>package</h3>
 </div>
-<div class="slide"></div>
+<div class="slide"><div class="double"><div class="column left" style="width: 42vw"><div class="srcfile"><code><ol>
+<li><span class="keyword">package</span> main</li>
+<li></li>
+<li><span class="keyword">import</span> (</li>
+<li>    "fmt"</li>
+<li>    "time"</li>
+<li></li>
+<li>    "github.com/gregoryv/uptime"</li>
+<li>)</li>
+<li></li>
+<li><span class="keyword">func</span> main() {</li>
+<li>    start := time.Now()</li>
+<li>    dur := uptime.Since(start)</li>
+<li>    fmt.Println(dur.String())</li>
+<li>}</li>
+<li></li>
+<li></li>
+</ol>
+</code></div>
 </div>
-<div class="footer">6/24</div>
+<div class="column right" style="left: 50vw; width: 50vw"><br/><quote>"... package name should be good: short, concise, evocative. ...Use the package structure to help you choose good names. "<br/><br/><a href="https://go.dev/doc/effective_go#package-names">go.dev/doc/effective_go#package-names</a></quote></div>
+</div>
+</div>
+</div>
+<div class="footer">6/25</div>
 </div>
 <div class="page" id="7"><div class="view"><div class="header"><div class="group">Concepts</div>
 <h3>interface</h3>
 </div>
-<div class="slide"></div>
+<div class="slide"><p></p>
 </div>
-<div class="footer">7/24</div>
+</div>
+<div class="footer">7/25</div>
 </div>
 <div class="page" id="8"><div class="view"><div class="header"><h2>Example</h2>
 </div>
@@ -281,7 +323,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer">8/24</div>
+<div class="footer">8/25</div>
 </div>
 <div class="page" id="9"><div class="view"><div class="header"><div class="group">Example</div>
 <h3>Direct</h3>
@@ -311,7 +353,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer">9/24</div>
+<div class="footer">9/25</div>
 </div>
 <div class="page" id="10"><div class="view"><div class="header"><div class="group">Example</div>
 <h3>Closure</h3>
@@ -332,8 +374,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>}</li>
 <li></li>
 <li><span class="keyword">func</span> sayHello() http.HandlerFunc {</li>
+<li>    txt := "Hello, world!"</li>
 <li>    <span class="keyword">return</span> <span class="keyword">func</span>(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
-<li>        fmt.Fprint(w, "Hello, world!")</li>
+<li>        fmt.Fprint(w, txt)</li>
 <li>    }</li>
 <li>}</li>
 <li></li>
@@ -342,7 +385,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer">10/24</div>
+<div class="footer">10/25</div>
 </div>
 <div class="page" id="11"><div class="view"><div class="header"><div class="group">Example</div>
 <h3>Method</h3>
@@ -373,7 +416,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer">11/24</div>
+<div class="footer">11/25</div>
 </div>
 <div class="page" id="12"><div class="view"><div class="header"><div class="group">Example</div>
 <h3>Combo</h3>
@@ -407,20 +450,20 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer">12/24</div>
+<div class="footer">12/25</div>
 </div>
 <div class="page" id="13"><div class="view"><div class="header"><h2>Route</h2>
 </div>
 <div class="slide"></div>
 </div>
-<div class="footer">13/24</div>
+<div class="footer">13/25</div>
 </div>
 <div class="page" id="14"><div class="view"><div class="header"><div class="group">Route</div>
 <h3>Naive</h3>
 </div>
 <div class="slide"></div>
 </div>
-<div class="footer">14/24</div>
+<div class="footer">14/25</div>
 </div>
 <div class="page" id="15"><div class="view"><div class="header"><div class="group">Route</div>
 <h3>Combo</h3>
@@ -453,54 +496,54 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer">15/24</div>
+<div class="footer">15/25</div>
 </div>
 <div class="page" id="16"><div class="view"><div class="header"><div class="group">Route</div>
-<h3>http/ServeMux</h3>
+<h3>http.ServeMux</h3>
 </div>
 <div class="slide"></div>
 </div>
-<div class="footer">16/24</div>
+<div class="footer">16/25</div>
 </div>
 <div class="page" id="17"><div class="view"><div class="header"><h2>Encode</h2>
 </div>
 <div class="slide"></div>
 </div>
-<div class="footer">17/24</div>
+<div class="footer">17/25</div>
 </div>
 <div class="page" id="18"><div class="view"><div class="header"><div class="group">Encode</div>
 <h3>encoding/json</h3>
 </div>
 <div class="slide"></div>
 </div>
-<div class="footer">18/24</div>
+<div class="footer">18/25</div>
 </div>
 <div class="page" id="19"><div class="view"><div class="header"><h2>Test</h2>
 </div>
 <div class="slide"><p></p>
 </div>
 </div>
-<div class="footer">19/24</div>
+<div class="footer">19/25</div>
 </div>
 <div class="page" id="20"><div class="view"><div class="header"><div class="group">Test</div>
 <h3>http/httptest</h3>
 </div>
 <div class="slide"></div>
 </div>
-<div class="footer">20/24</div>
+<div class="footer">20/25</div>
 </div>
 <div class="page" id="21"><div class="view"><div class="header"><div class="group">Test</div>
 <h3>coverage</h3>
 </div>
 <div class="slide"></div>
 </div>
-<div class="footer">21/24</div>
+<div class="footer">21/25</div>
 </div>
 <div class="page" id="22"><div class="view"><div class="header"><h2>View</h2>
 </div>
 <div class="slide"></div>
 </div>
-<div class="footer">22/24</div>
+<div class="footer">22/25</div>
 </div>
 <div class="page" id="23"><div class="view"><div class="header"><div class="group">View</div>
 <h3>html/template</h3>
@@ -508,14 +551,28 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <div class="slide"><p></p>
 </div>
 </div>
-<div class="footer">23/24</div>
+<div class="footer">23/25</div>
 </div>
 <div class="page" id="24"><div class="view"><div class="header"><div class="group">View</div>
 <h3>embed</h3>
 </div>
 <div class="slide"></div>
 </div>
-<div class="footer">24/24</div>
+<div class="footer">24/25</div>
+</div>
+<div class="page" id="25"><div class="view"><div class="header"><h2>Next time</h2>
+</div>
+<div class="slide"><pre>
+Design patterns
+  - access control
+
+Benchmarking
+Logging
+Error handling
+
+</pre></div>
+</div>
+<div class="footer">25/25</div>
 </div>
 </body>
 <script>document.addEventListener('keydown', function(event) {

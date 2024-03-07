@@ -13,7 +13,8 @@ func main() {
 }
 
 func sayHello() http.HandlerFunc {
+	txt := "Hello, world!"
 	return func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "Hello, world!")
+		fmt.Fprint(w, txt)
 	}
 }

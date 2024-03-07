@@ -49,11 +49,20 @@ func main() {
 		"font-style: italic",
 		"padding-left: 2vw",
 		"padding-right: 2vw",
-		"width: 60vw",
 	)
 	p.Style("quote>a",
 		"font-size: 0.7em",
 		"float: right",
+	)
+	p.Style(".pictogram",
+		"text-align: center",
+	)
+	p.Style(".pictogram>label",
+		"font-style: italic",
+		"font-size: 0.6em",
+	)
+	p.Style(".srcfile",
+		"font-size: 3vh",
 	)
 	// ----------------------------------------  ----------------------------------------
 	// ----------------------------------------  ----------------------------------------
@@ -102,12 +111,54 @@ go version go1.22.0 linux/amd64`,
 	)
 	p.NewCard(
 		H3("module"),
+		TwoCol(
+			Wrap(
+				P(`Modules are initiated using the reposity URL.`),
+				Pre(Class("shell dark"),
+					"$ go mod init github.com/gregoryv/uptime",
+				),
+				P(`This can then be used`),
+				Pre(Class("shell dark"),
+					"$ go get github.com/gregoryv/uptime[@VERSION]",
+				),
+				P("Find modules on ",
+					A(Href("https://pkg.go.dev"),					"pkg.go.dev"),
+				),
+			),
+			Wrap(
+
+				P(`Sharing code with others requires dependency
+				management.`),
+
+				pictogram("module.png", "Pictogram of a Go module"),
+			),
+			50,
+		),
 	)
 	p.NewCard(
 		H3("package"),
+
+		TwoCol(
+			deck.Load("examples/imports.go"),
+			Wrap(
+				Br(),
+				quote(
+					Wrap(
+						`... package name should be good: short, concise, evocative. `,
+						"...",
+						`Use the package structure to help you choose good names. `,
+					),
+
+					"https://go.dev/doc/effective_go#package-names",
+				),
+			),
+			50,
+		),
 	)
 	p.NewCard(
 		H3("interface"),
+
+		P(``),
 	)
 	// ----------------------------------------
 
@@ -160,7 +211,7 @@ go version go1.22.0 linux/amd64`,
 		),
 	)
 	p.NewCard(
-		H3("http/ServeMux"),
+		H3("http.ServeMux"),
 	)
 	// ----------------------------------------
 	p.NewCard(
@@ -195,6 +246,19 @@ go version go1.22.0 linux/amd64`,
 		H3("embed"),
 	)
 
+	p.NewCard(
+		H2("Next time"),
+
+		Pre(`
+Design patterns
+  - access control
+
+Benchmarking
+Logging
+Error handling
+
+`),
+	)
 	p.Document().SaveAs("index.html")
 }
 
@@ -223,8 +287,18 @@ func quote(el any, href string) *Element {
 	return Quote(
 		`"`, el, `"`,
 		Br(),
+		Br(),		
 		A(
 			Href(href), strings.TrimPrefix(href, "https://"),
 		),
+	)
+}
+
+func pictogram(filename, label string) *Element {
+	return Div(
+		Class("pictogram"),
+		Img(Src("img/"+filename)),
+		Br(),
+		Label(label),
 	)
 }

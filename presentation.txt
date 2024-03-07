@@ -1,0 +1,39 @@
+Go course at Assaabloy
+
+March 28, 14.00-16.00
+
+Golang; Backend development
+
+You will learn how to approach designing a solution using package
+provided by the language.
+
+Table of contents
+
+- Quickstart - install the language
+- Concepts
+  - module
+  - package
+  - interface
+
+- Example
+  - Direct - functions
+  - Closure - func variation
+  - Methods
+  - Combination of the above
+  
+- Route
+  - Naive
+  - Combo
+  - net/http
+
+- Encode
+  - encoding/json
+
+- Test
+  - http/httptest
+  - coverage
+
+- View
+  - html/template
+  - embed
+
