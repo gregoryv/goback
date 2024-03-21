@@ -12,4 +12,3 @@ func main() {
 	dur := uptime.Since(start)
 	fmt.Println(dur.String())
 }
-

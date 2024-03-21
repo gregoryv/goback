@@ -167,7 +167,7 @@ font-size: 0.8em;
 padding-right: 40px;
 }
 .shell {
-font-size: 0.7em;
+font-size: 1.5vw;
 }
 p>a {
 text-decoration: underline;
@@ -177,20 +177,36 @@ display: inline-block;
 font-style: italic;
 padding-left: 2vw;
 padding-right: 2vw;
+font-size: 1.5vw;
 }
 quote>a {
-font-size: 0.7em;
+font-size: 1vw;
 float: right;
 }
-.pictogram {
-text-align: center;
+quote.small {
+font-size: 1vw;
 }
-.pictogram>label {
+.pictogram {
+width: 400px;
+background-color: #f6f5f4;
+text-align: center;
+padding: 1em 1em;
+margin: 1em auto;
+border: 1px inset #000;
+}
+.pictogram label {
 font-style: italic;
 font-size: 0.6em;
 }
 .srcfile {
-font-size: 3vh;
+font-size: 1.3vw;
+}
+.filename {
+display: block;
+font-size: 0.8vw;
+text-align: right;
+margin-top: 2em;
+margin-bottom: -2em;
 }
 </style>
 </head>
@@ -273,7 +289,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 <div class="column right" style="left: 50vw; width: 50vw"><p>Sharing code with others requires dependency
 				management.</p>
-<div class="pictogram"><img src="img/module.png"/><br/><label>Pictogram of a Go module</label></div>
+<div class="pictogram"><img src="img/pic_module.png"/><br/><label>Pictogram of a Go module</label></div>
 </div>
 </div>
 </div>
@@ -299,11 +315,11 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>    fmt.Println(dur.String())</li>
 <li>}</li>
 <li></li>
-<li></li>
 </ol>
 </code></div>
 </div>
-<div class="column right" style="left: 50vw; width: 50vw"><br/><quote>"... package name should be good: short, concise, evocative. ...Use the package structure to help you choose good names. "<br/><br/><a href="https://go.dev/doc/effective_go#package-names">go.dev/doc/effective_go#package-names</a></quote></div>
+<div class="column right" style="left: 50vw; width: 50vw"><br/><quote>"... package name should be good: short, concise, evocative. ...Use the package structure to help you choose good names. "<br/><br/><a href="https://go.dev/doc/effective_go#package-names">go.dev/doc/effective_go#package-names</a></quote><div class="pictogram"><img src="img/pic_package.png"/><br/><label>Pictogram of a Go package</label></div>
+</div>
 </div>
 </div>
 </div>
@@ -312,7 +328,47 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <div class="page" id="7"><div class="view"><div class="header"><div class="group">Concepts</div>
 <h3>interface</h3>
 </div>
-<div class="slide"><p></p>
+<div class="slide"><div class="double"><div class="column left" style="width: 42vw"><br/><quote class="small">"Interfaces with only one or two methods are common in Go
+			code, and are usually given a name derived from the
+			method, such as io.Writer for something that implements
+			Write."<br/><br/><a href="https://go.dev/doc/effective_go#interfaces_and_types">go.dev/doc/effective_go#interfaces_and_types</a></quote><div class="srcfile"><code><ol>
+<li><span class="keyword">package</span> fmt</li>
+<li></li>
+<li><span class="keyword">type</span> Stringer <span class="keyword">interface</span> {</li>
+<li>        String() string</li>
+<li>}</li>
+<li></li>
+<li></li>
+</ol>
+</code></div>
+<div class="pictogram"><img src="img/pic_interface.png"/><br/><label>Pictogram of a Go interface</label></div>
+</div>
+<div class="column right" style="left: 50vw; width: 50vw"><div class="srcfile"><code><ol start="7">
+<li><span class="keyword">func</span> main() {</li>
+<li>    fmt.Println(painted(color(2)))</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">type</span> color int</li>
+<li></li>
+<li><span class="keyword">func</span> (c color) String() string {</li>
+<li>    <span class="keyword">switch</span> c {</li>
+<li>    <span class="keyword">case</span> 1:</li>
+<li>        <span class="keyword">return</span> "red"</li>
+<li>    <span class="keyword">case</span> 2:</li>
+<li>        <span class="keyword">return</span> "green"</li>
+<li>    <span class="keyword">default</span>:</li>
+<li>        <span class="keyword">return</span> "white"</li>
+<li>    }</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">func</span> painted(value <span class="type">fmt.Stringer</span>) string {</li>
+<li>    <span class="keyword">return</span> fmt.Sprintf("Painted: %s", value.String())</li>
+<li>}</li>
+<li></li>
+</ol>
+</code></div>
+</div>
+</div>
 </div>
 </div>
 <div class="footer">7/25</div>

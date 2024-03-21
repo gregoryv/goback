@@ -17,7 +17,9 @@ func main() {
 	}
 	// dark mode
 	// p.Style("html, body, a", "background-color: #2E2E34", "color: #f0f8ff")
-	p.Style(".header", "background-color: #f6f5f4", "border-bottom: 1px inset #000")
+	p.Style(".header", "background-color: #f6f5f4",
+		"border-bottom: 1px inset #000",
+	)
 	p.Style(".page .footer", "bottom: 1vh") // slightly up
 	// center toc if short titles
 	// p.Style(".toc", "margin-left: 10vw", "width: 20vw")
@@ -39,7 +41,7 @@ func main() {
 		"padding-right: 40px",
 	)
 	p.Style(".shell",
-		"font-size: 0.7em",
+		"font-size: 1.5vw",
 	)
 	p.Style("p>a",
 		"text-decoration: underline",
@@ -49,22 +51,39 @@ func main() {
 		"font-style: italic",
 		"padding-left: 2vw",
 		"padding-right: 2vw",
+		"font-size: 1.5vw",		
 	)
 	p.Style("quote>a",
-		"font-size: 0.7em",
+		"font-size: 1vw",
 		"float: right",
 	)
-	p.Style(".pictogram",
-		"text-align: center",
+	p.Style("quote.small",
+		"font-size: 1vw",
 	)
-	p.Style(".pictogram>label",
+
+	p.Style(".pictogram",
+		"width: 400px",
+		"background-color: #f6f5f4",
+		"text-align: center",
+		"padding: 1em 1em",
+		"margin: 1em auto",
+		"border: 1px inset #000",
+	)
+	p.Style(".pictogram label",
 		"font-style: italic",
 		"font-size: 0.6em",
 	)
 	p.Style(".srcfile",
-		"font-size: 3vh",
+		"font-size: 1.3vw",
 	)
-	// ----------------------------------------  ----------------------------------------
+	p.Style(".filename",
+		"display: block",
+		"font-size: 0.8vw",
+		"text-align: right",
+		"margin-top: 2em",
+		"margin-bottom: -2em",
+	)
+
 	// ----------------------------------------  ----------------------------------------
 	p.NewCard(
 		H2("Quick start"),
@@ -122,7 +141,7 @@ go version go1.22.0 linux/amd64`,
 					"$ go get github.com/gregoryv/uptime[@VERSION]",
 				),
 				P("Find modules on ",
-					A(Href("https://pkg.go.dev"),					"pkg.go.dev"),
+					A(Href("https://pkg.go.dev"), "pkg.go.dev"),
 				),
 			),
 			Wrap(
@@ -130,7 +149,7 @@ go version go1.22.0 linux/amd64`,
 				P(`Sharing code with others requires dependency
 				management.`),
 
-				pictogram("module.png", "Pictogram of a Go module"),
+				pictogram("pic_module.png", "Pictogram of a Go module"),
 			),
 			50,
 		),
@@ -139,7 +158,10 @@ go version go1.22.0 linux/amd64`,
 		H3("package"),
 
 		TwoCol(
-			deck.Load("examples/imports.go"),
+			Wrap(
+				//Span(Class("filename"), "myprogram.go"),				
+				deck.Load("examples/imports.go"),
+			),
 			Wrap(
 				Br(),
 				quote(
@@ -150,7 +172,8 @@ go version go1.22.0 linux/amd64`,
 					),
 
 					"https://go.dev/doc/effective_go#package-names",
-				),
+				),				
+				pictogram("pic_package.png", "Pictogram of a Go package"),				
 			),
 			50,
 		),
@@ -158,7 +181,24 @@ go version go1.22.0 linux/amd64`,
 	p.NewCard(
 		H3("interface"),
 
-		P(``),
+		TwoCol(
+			Wrap(
+				Br(),
+				quote(
+					`Interfaces with only one or two methods are common in Go
+			code, and are usually given a name derived from the
+			method, such as io.Writer for something that implements
+			Write.`,
+
+					"https://go.dev/doc/effective_go#interfaces_and_types",
+				).With(Class("small")),
+
+				deck.Load("examples/stringer.go"),
+				pictogram("pic_interface.png", "Pictogram of a Go interface"),				
+			),
+			deck.LoadLines("examples/interface.go", 7, -1),			
+			50,
+		),
 	)
 	// ----------------------------------------
 
@@ -287,7 +327,7 @@ func quote(el any, href string) *Element {
 	return Quote(
 		`"`, el, `"`,
 		Br(),
-		Br(),		
+		Br(),
 		A(
 			Href(href), strings.TrimPrefix(href, "https://"),
 		),
