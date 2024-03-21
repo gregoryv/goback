@@ -26,7 +26,6 @@ func main() {
 	p.Style(".shell",
 		"padding: 1em",
 		"border-radius: 10px",
-		"min-width: 40vw",
 		"overflow: wrap",
 	)
 	p.Style(".dark",
@@ -84,6 +83,13 @@ func main() {
 	p.Style(".icons",
 		"column-count: 3",
 		"list-style-type: none",
+	)
+	// wip style
+	p.Style(".small *",
+		"font-size: 0.9vw",
+	)
+	p.Style(".right .srcfile, .right .shell",
+		"margin-right: 1em",
 	)
 	// ----------------------------------------  ----------------------------------------
 	p.NewCard(
@@ -206,26 +212,37 @@ go version go1.22.0 linux/amd64`,
 	p.NewCard(
 		H2("HTTP Examples"),
 		deck.Middle(68,
-			P(`Variations of implementing a system for handling HTTP requests`),
-			"Pictograms:",
-			Ul(Class("icons"),
-				Li(pictogram("pic_module.png", "Module")),
-				Li(pictogram("pic_package.png", "Package")),								
-				Li(pictogram("pic_func.png", "Func")),
-				Li(pictogram("pic_closure.png", "Closure")),
-				Li(pictogram("pic_method.png", "Method")),
-				Li(pictogram("pic_combined_closure.png", "Combined closure")),
-			),
+
+			P(`Respond to HTTP requests in Go by implementing the
+			http.Handler interface.`),
+
+			deck.Load("examples/handler.go"),
 		),
-	) // wip here
+	)
 	p.NewCard(
 		H3("Direct"),
-		deck.Middle(70,
+		TwoCol(
 			deck.Load("examples/direct.go"),
+			Wrap(
+
+				P(`Direct design uses named functions as http
+                handlers, implementing the http.HandlerFunc
+                interface`),
+
+				pictogram("pic_func.png", "Func"),
+
+				Span(Class("small"),
+					Pre(Class("shell dark"),
+						"$ go run helloworld.go",
+					),
+				),
+			),
+			40,
 		),
 	)
 	p.NewCard(
 		H3("Closure"),
+		// wip here
 		deck.Middle(70,
 			deck.Load("examples/closure.go"),
 		),
