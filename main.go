@@ -243,8 +243,16 @@ go version go1.22.0 linux/amd64`,
 	p.NewCard(
 		H3("Closure"),
 		// wip here
-		deck.Middle(70,
+		TwoCol(
 			deck.Load("examples/closure.go"),
+			Wrap(
+
+				P(`Closure design uses named functions returning a
+                http.Handler implementation`),
+
+				pictogram("pic_closure.png", "Closure"),
+			),
+			40,
 		),
 	)
 	p.NewCard(
