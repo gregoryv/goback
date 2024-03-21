@@ -212,7 +212,7 @@ list-style-type: none;
 .small * {
 font-size: 0.9vw;
 }
-.right .srcfile, .right .shell {
+.right .srcfile, .right .shell, .right p {
 margin-right: 1em;
 }
 </style>
@@ -519,7 +519,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <div class="page" id="12"><div class="view"><div class="header"><div class="group">HTTP Examples</div>
 <h3>Combo</h3>
 </div>
-<div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><div class="srcfile"><code><ol>
+<div class="slide"><div class="double"><div class="column left" style="width: 47vw"><span class="small"><div class="srcfile"><code><ol>
 <li><span class="keyword">package</span> main</li>
 <li></li>
 <li><span class="keyword">import</span> (</li>
@@ -544,7 +544,12 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li></li>
 </ol>
 </code></div>
-<p>More on the object oriented design side</p>
+</span></div>
+<div class="column right" style="left: 55vw; width: 45vw"><p>Combo design declares types with multiple methods
+				that are either methods that either have a
+				http.HandlerFunc signature or return one (closure).</p>
+<div class="pictogram"><img src="img/pic_combined_closure.png"/><br/><label>Combo</label></div>
+</div>
 </div>
 </div>
 </div>

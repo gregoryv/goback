@@ -88,7 +88,7 @@ func main() {
 	p.Style(".small *",
 		"font-size: 0.9vw",
 	)
-	p.Style(".right .srcfile, .right .shell",
+	p.Style(".right .srcfile, .right .shell, .right p",
 		"margin-right: 1em",
 	)
 	// ----------------------------------------  ----------------------------------------
@@ -271,9 +271,19 @@ go version go1.22.0 linux/amd64`,
 	// wip here
 	p.NewCard(
 		H3("Combo"),
-		deck.Middle(70,
-			deck.Load("examples/combo.go"),
-			P(`More on the object oriented design side`),
+		TwoCol(
+			Span(Class("small"),
+				deck.Load("examples/combo.go"),
+			),
+			Wrap(
+
+				P(`Combo design declares types with multiple methods
+				that are either methods that either have a
+				http.HandlerFunc signature or return one (closure).`),
+
+				pictogram("pic_combined_closure.png", "Combo"),
+			),
+			45,
 		),
 	)
 
