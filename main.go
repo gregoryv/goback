@@ -242,7 +242,6 @@ go version go1.22.0 linux/amd64`,
 	)
 	p.NewCard(
 		H3("Closure"),
-		// wip here
 		TwoCol(
 			deck.Load("examples/closure.go"),
 			Wrap(
@@ -257,10 +256,19 @@ go version go1.22.0 linux/amd64`,
 	)
 	p.NewCard(
 		H3("Method"),
-		deck.Middle(70,
+		TwoCol(
 			deck.Load("examples/method.go"),
+			Wrap(
+
+				P(`Method design declares types that implement
+				http.Handler`),
+
+				pictogram("pic_method.png", "Method"),
+			),
+			40,
 		),
 	)
+	// wip here
 	p.NewCard(
 		H3("Combo"),
 		deck.Middle(70,
