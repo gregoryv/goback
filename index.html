@@ -188,11 +188,9 @@ font-size: 1vw;
 }
 .pictogram {
 width: 400px;
-background-color: #f6f5f4;
 text-align: center;
 padding: 1em 1em;
 margin: 1em auto;
-border: 1px inset #000;
 }
 .pictogram label {
 font-style: italic;
@@ -207,6 +205,10 @@ font-size: 0.8vw;
 text-align: right;
 margin-top: 2em;
 margin-bottom: -2em;
+}
+.icons {
+column-count: 3;
+list-style-type: none;
 }
 </style>
 </head>
@@ -228,7 +230,7 @@ margin-bottom: -2em;
 <li class="h3"><a href="#5">module</a></li>
 <li class="h3"><a href="#6">package</a></li>
 <li class="h3"><a href="#7">interface</a></li>
-<li class="h2"><a href="#8">Example</a></li>
+<li class="h2"><a href="#8">HTTP Examples</a></li>
 <li class="h3"><a href="#9">Direct</a></li>
 <li class="h3"><a href="#10">Closure</a></li>
 <li class="h3"><a href="#11">Method</a></li>
@@ -335,9 +337,8 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li><span class="keyword">package</span> fmt</li>
 <li></li>
 <li><span class="keyword">type</span> Stringer <span class="keyword">interface</span> {</li>
-<li>        String() string</li>
+<li>    String() string</li>
 <li>}</li>
-<li></li>
 <li></li>
 </ol>
 </code></div>
@@ -373,15 +374,29 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 <div class="footer">7/25</div>
 </div>
-<div class="page" id="8"><div class="view"><div class="header"><h2>Example</h2>
+<div class="page" id="8"><div class="view"><div class="header"><h2>HTTP Examples</h2>
 </div>
-<div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><p>Variations</p>
+<div class="slide"><div style="position: absolute; left: 16vw; width: 68vw"><p>Variations of implementing a system for handling HTTP requests</p>
+Pictograms:<ul class="icons">
+<li><div class="pictogram"><img src="img/pic_module.png"/><br/><label>Module</label></div>
+</li>
+<li><div class="pictogram"><img src="img/pic_package.png"/><br/><label>Package</label></div>
+</li>
+<li><div class="pictogram"><img src="img/pic_func.png"/><br/><label>Func</label></div>
+</li>
+<li><div class="pictogram"><img src="img/pic_closure.png"/><br/><label>Closure</label></div>
+</li>
+<li><div class="pictogram"><img src="img/pic_method.png"/><br/><label>Method</label></div>
+</li>
+<li><div class="pictogram"><img src="img/pic_combined_closure.png"/><br/><label>Combined closure</label></div>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="footer">8/25</div>
 </div>
-<div class="page" id="9"><div class="view"><div class="header"><div class="group">Example</div>
+<div class="page" id="9"><div class="view"><div class="header"><div class="group">HTTP Examples</div>
 <h3>Direct</h3>
 </div>
 <div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><div class="srcfile"><code><ol>
@@ -411,7 +426,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 <div class="footer">9/25</div>
 </div>
-<div class="page" id="10"><div class="view"><div class="header"><div class="group">Example</div>
+<div class="page" id="10"><div class="view"><div class="header"><div class="group">HTTP Examples</div>
 <h3>Closure</h3>
 </div>
 <div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><div class="srcfile"><code><ol>
@@ -443,7 +458,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 <div class="footer">10/25</div>
 </div>
-<div class="page" id="11"><div class="view"><div class="header"><div class="group">Example</div>
+<div class="page" id="11"><div class="view"><div class="header"><div class="group">HTTP Examples</div>
 <h3>Method</h3>
 </div>
 <div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><div class="srcfile"><code><ol>
@@ -474,7 +489,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 <div class="footer">11/25</div>
 </div>
-<div class="page" id="12"><div class="view"><div class="header"><div class="group">Example</div>
+<div class="page" id="12"><div class="view"><div class="header"><div class="group">HTTP Examples</div>
 <h3>Combo</h3>
 </div>
 <div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><div class="srcfile"><code><ol>

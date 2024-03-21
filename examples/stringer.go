@@ -1,6 +1,5 @@
 package fmt
 
 type Stringer interface {
-        String() string
+	String() string
 }
-

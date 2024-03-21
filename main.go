@@ -51,7 +51,7 @@ func main() {
 		"font-style: italic",
 		"padding-left: 2vw",
 		"padding-right: 2vw",
-		"font-size: 1.5vw",		
+		"font-size: 1.5vw",
 	)
 	p.Style("quote>a",
 		"font-size: 1vw",
@@ -63,11 +63,9 @@ func main() {
 
 	p.Style(".pictogram",
 		"width: 400px",
-		"background-color: #f6f5f4",
 		"text-align: center",
 		"padding: 1em 1em",
 		"margin: 1em auto",
-		"border: 1px inset #000",
 	)
 	p.Style(".pictogram label",
 		"font-style: italic",
@@ -83,7 +81,10 @@ func main() {
 		"margin-top: 2em",
 		"margin-bottom: -2em",
 	)
-
+	p.Style(".icons",
+		"column-count: 3",
+		"list-style-type: none",
+	)
 	// ----------------------------------------  ----------------------------------------
 	p.NewCard(
 		H2("Quick start"),
@@ -159,7 +160,7 @@ go version go1.22.0 linux/amd64`,
 
 		TwoCol(
 			Wrap(
-				//Span(Class("filename"), "myprogram.go"),				
+				// Span(Class("filename"), "myprogram.go"),
 				deck.Load("examples/imports.go"),
 			),
 			Wrap(
@@ -172,8 +173,8 @@ go version go1.22.0 linux/amd64`,
 					),
 
 					"https://go.dev/doc/effective_go#package-names",
-				),				
-				pictogram("pic_package.png", "Pictogram of a Go package"),				
+				),
+				pictogram("pic_package.png", "Pictogram of a Go package"),
 			),
 			50,
 		),
@@ -194,20 +195,29 @@ go version go1.22.0 linux/amd64`,
 				).With(Class("small")),
 
 				deck.Load("examples/stringer.go"),
-				pictogram("pic_interface.png", "Pictogram of a Go interface"),				
+				pictogram("pic_interface.png", "Pictogram of a Go interface"),
 			),
-			deck.LoadLines("examples/interface.go", 7, -1),			
+			deck.LoadLines("examples/interface.go", 7, -1),
 			50,
 		),
 	)
 	// ----------------------------------------
 
 	p.NewCard(
-		H2("Example"),
-		deck.Middle(70,
-			P(`Variations`),
+		H2("HTTP Examples"),
+		deck.Middle(68,
+			P(`Variations of implementing a system for handling HTTP requests`),
+			"Pictograms:",
+			Ul(Class("icons"),
+				Li(pictogram("pic_module.png", "Module")),
+				Li(pictogram("pic_package.png", "Package")),								
+				Li(pictogram("pic_func.png", "Func")),
+				Li(pictogram("pic_closure.png", "Closure")),
+				Li(pictogram("pic_method.png", "Method")),
+				Li(pictogram("pic_combined_closure.png", "Combined closure")),
+			),
 		),
-	)
+	) // wip here
 	p.NewCard(
 		H3("Direct"),
 		deck.Middle(70,
