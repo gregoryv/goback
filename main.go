@@ -291,7 +291,7 @@ go version go1.22.0 linux/amd64`,
 		H2("Route"),
 
 		deck.Middle(68,
-			
+
 			P(`For systems serving many resources`),
 
 			deck.Load("examples/servemux.go"),
@@ -303,18 +303,24 @@ go version go1.22.0 linux/amd64`,
 			),
 		),
 	)
-	// wip here
 	p.NewCard(
 		H3("Naive"),
+		TwoCol(
+			deck.LoadLines("examples/naive.go", 16, -1),
+			P(`Manual routing`),
+			30, // right column width
+		),
 	)
+	// wip here
 	p.NewCard(
 		H3("Combo"),
 		TwoCol(
 			deck.LoadLines("examples/combo_route.go", 9, -1),
-			P(`Uses package http builtin singleton muxer.`),
+			P(`Use http singleton ServeMux.`),
 			30, // right column width
 		),
 	)
+
 	p.NewCard(
 		H3("http.ServeMux"),
 	)

@@ -580,7 +580,38 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <div class="page" id="14"><div class="view"><div class="header"><div class="group">Route</div>
 <h3>Naive</h3>
 </div>
-<div class="slide"></div>
+<div class="slide"><div class="double"><div class="column left" style="width: 62vw"><div class="srcfile"><code><ol start="16">
+<li><span class="keyword">func</span> (c *Controller) ServeHTTP(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    <span class="keyword">if</span> r.Method == "GET" {</li>
+<li>        <span class="keyword">if</span> r.URL.Path == "/" {</li>
+<li>            c.sayHello(w, r)</li>
+<li>            <span class="keyword">return</span></li>
+<li>        }</li>
+<li>        <span class="keyword">if</span> r.URL.Path == "/bye" {</li>
+<li>            c.sayGoodbye(w, r)</li>
+<li>            <span class="keyword">return</span></li>
+<li>        }</li>
+<li>    }</li>
+<li>    http.Error(w, "routing failed", <span class="type">http.StatusBadRequest</span>)</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">type</span> Controller <span class="keyword">struct</span>{}</li>
+<li></li>
+<li><span class="keyword">func</span> (c *Controller) sayHello(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    fmt.Fprint(w, "Hello, world!")</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">func</span> (c *Controller) sayGoodbye(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    fmt.Fprint(w, "Goodbye, world!")</li>
+<li>}</li>
+<li></li>
+</ol>
+</code></div>
+</div>
+<div class="column right" style="left: 70vw; width: 30vw"><p>Manual routing</p>
+</div>
+</div>
+</div>
 </div>
 <div class="footer">14/25</div>
 </div>
@@ -610,7 +641,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </ol>
 </code></div>
 </div>
-<div class="column right" style="left: 70vw; width: 30vw"><p>Uses package http builtin singleton muxer.</p>
+<div class="column right" style="left: 70vw; width: 30vw"><p>Use http singleton ServeMux.</p>
 </div>
 </div>
 </div>
