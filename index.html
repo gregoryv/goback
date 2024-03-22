@@ -557,7 +557,23 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 <div class="page" id="13"><div class="view"><div class="header"><h2>Route</h2>
 </div>
-<div class="slide"></div>
+<div class="slide"><div style="position: absolute; left: 16vw; width: 68vw"><p>For systems serving many resources</p>
+<div class="srcfile"><code><ol>
+<li><span class="keyword">package</span> http</li>
+<li></li>
+<li><span class="comment">// ServeMux is an HTTP request multiplexer. It matches the URL of each</span></li>
+<li><span class="comment">// incoming request against a list of registered patterns and calls</span></li>
+<li><span class="comment">// the handler <span class="keyword">for</span> the pattern that most closely matches the URL.</span></li>
+<li><span class="keyword">type</span> ServeMux <span class="keyword">struct</span> {</li>
+<li>    <span class="comment">// Has unexported fields.</span></li>
+<li>}</li>
+<li></li>
+</ol>
+</code></div>
+<pre>multiplexer
+      n 1: a device that can interleave two or more activities
+</pre></div>
+</div>
 </div>
 <div class="footer">13/25</div>
 </div>

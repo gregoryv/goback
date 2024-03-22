@@ -268,7 +268,6 @@ go version go1.22.0 linux/amd64`,
 			40,
 		),
 	)
-	// wip here
 	p.NewCard(
 		H3("Combo"),
 		TwoCol(
@@ -288,10 +287,23 @@ go version go1.22.0 linux/amd64`,
 	)
 
 	// ----------------------------------------
-
 	p.NewCard(
 		H2("Route"),
+
+		deck.Middle(68,
+			
+			P(`For systems serving many resources`),
+
+			deck.Load("examples/servemux.go"),
+
+			Pre(
+				`multiplexer
+      n 1: a device that can interleave two or more activities
+`,
+			),
+		),
 	)
+	// wip here
 	p.NewCard(
 		H3("Naive"),
 	)
