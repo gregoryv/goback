@@ -47,6 +47,4 @@ func encodeSection(p *Deck) {
 			40,
 		),
 	)
-
-	// wip here
 }
