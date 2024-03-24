@@ -9,7 +9,7 @@ import (
 
 func main() {
 	p := Deck{
-		Title:     "Go; Backend development",
+		Title:     "Go; Backend development #1",
 		Author:    "Gregory Vinčić",
 		AutoCover: true,
 		cover:     Img(Src("img/coverpage.png")),
@@ -105,8 +105,6 @@ func main() {
 		"padding-top: 50px",
 		"color: red",
 	)
-	// wip style
-	// ----------------------------------------  ----------------------------------------
 
 	introSection(&p)
 	conceptsSection(&p)

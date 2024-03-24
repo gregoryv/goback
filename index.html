@@ -2,7 +2,7 @@
 
 <html>
 <head>
-<title>Go; Backend development</title>
+<title>Go; Backend development #1</title>
 <style>html, body {
 margin: 0 0;
 padding: 0 0;
@@ -258,11 +258,33 @@ padding-right: 2em;
 text-align: left;
 border-bottom: 1px solid black;
 }
+.courses {
+width: 100%;
+}
+.courses tr td {
+vertical-align: top;
+width: 33%;
+}
+.course {
+font-size: 1em;
+width: 80%;
+height: 90px;
+border: 5px double black;
+padding: 1em 1em;
+text-align: center;
+}
+.done {
+color: #e2e2e2;
+border: 5px double #e2e2e2;
+}
+.maybe {
+color: #e2e2e2;
+}
 </style>
 </head>
 <body>
 <div class="page" id="1"><div class="view"><div class="cover"><table>
-<tr><td><h1>Go; Backend development</h1>
+<tr><td><h1>Go; Backend development #1</h1>
 </td></tr>
 <tr><td><img src="img/coverpage.png"/></td></tr>
 <tr><td>by<br/>Gregory Vinčić</td></tr>
@@ -271,7 +293,7 @@ border-bottom: 1px solid black;
 </div>
 <div class="footer"><em class="prev">&nbsp;</em><em class="next">&nbsp;</em>1/31</div>
 </div>
-<div class="page" id="2"><div class="view"><div class="header"><h2>Go; Backend development</h2>
+<div class="page" id="2"><div class="view"><div class="header"><h2>Go; Backend development #1</h2>
 </div>
 <div class="slide"><div class="toc"><nav><ul>
 <li class="h2"><a href="#3">Introduction</a></li>
@@ -318,7 +340,7 @@ border-bottom: 1px solid black;
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Go; Backend development</em><em class="next">Introduction History &raquo;</em>3/31</div>
+<div class="footer"><em class="prev">&laquo; Go; Backend development #1</em><em class="next">Introduction History &raquo;</em>3/31</div>
 </div>
 <div class="page" id="4"><div class="view"><div class="header"><div class="group">Introduction</div>
 <h3>History</h3>
@@ -1148,15 +1170,26 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <div class="page" id="31"><div class="view"><div class="header"><div class="group">Summary</div>
 <h3>Next time</h3>
 </div>
-<div class="slide"><pre>
-Design patterns
-  - access control
-
-Benchmarking
-Logging
-Error handling
-
-</pre></div>
+<div class="slide"><br/><table class="courses">
+<tr><td><div class="course done">#1<br>Backend development</div>
+</td><td><div class="course">#2<br>General problems</div>
+<ol>
+<li>Test driven development</li>
+<li>Package testdata</li>
+<li>Documentation</li>
+<li>Logging</li>
+<li>Error handling</li>
+<li>Database IO</li>
+</ol>
+</td><td><div class="course"><em>#3<br>to be decided...</em></div>
+<ol class="maybe">
+<li>Concurrency</li>
+<li>Benchmark</li>
+<li>Testing strategy</li>
+</ol>
+</td></tr>
+</table>
+</div>
 </div>
 <div class="footer"><em class="prev">&laquo; Summary</em><em class="next">&nbsp;</em>31/31</div>
 </div>

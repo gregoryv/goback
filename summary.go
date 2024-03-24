@@ -30,21 +30,59 @@ func finallySection(p *Deck) {
 			),
 		),
 	)
-
+	p.Style(".courses",
+		"width: 100%",
+	)
+	p.Style(".courses tr td",
+		"vertical-align: top",
+		"width: 33%",
+	)
+	p.Style(".course",
+		"font-size: 1em",
+		"width: 80%",
+		"height: 90px",
+		"border: 5px double black",
+		"padding: 1em 1em",
+		"text-align: center",
+	)
+	p.Style(".done",
+		"color: #e2e2e2",
+		"border: 5px double #e2e2e2",
+	)
+	p.Style(".maybe",
+		"color: #e2e2e2",
+	)
 	p.NewCard(
 		H3("Next time"),
+		Br(),
+		Table(Class("courses"),
+			Tr(
+				Td(
+					Div(Class("course done"), "#1<br>Backend development"),
+				),
 
-		Pre(`
-Design patterns
-  - access control
-
-Benchmarking
-Logging
-Error handling
-
-`),
+				Td(
+					Div(Class("course"), "#2<br>General problems"),
+					Ol(
+						Li("Test driven development"),
+						Li("Package testdata"),
+						Li("Documentation"),
+						Li("Logging"),
+						Li("Error handling"),
+						Li("Database IO"),
+					),
+				),
+				Td(
+					Div(Class("course"), Em("#3<br>to be decided...")),
+					Ol(Class("maybe"),
+						Li("Concurrency"),
+						Li("Benchmark"),
+						Li("Testing strategy"),
+					),
+				),
+			),
+		),
 	)
-	// wip here
 }
 
 func row(pkg, txt string) *Element {
