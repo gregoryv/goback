@@ -37,7 +37,7 @@ func encodeSection(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("Field tags"),
+		H3("Struct tags"),
 		TwoCol(
 			Load("examples/fieldtags.go"),
 			Wrap(
