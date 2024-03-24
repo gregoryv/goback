@@ -82,7 +82,11 @@ func (p *Deck) CSS() *CSS {
 		"height: "+vh(headerHeight),
 		"overflow: hidden",
 	)
-
+	css.Style(".header",
+		"background-image: url('img/gopher.png')",
+		"background-repeat: no-repeat",
+		"background-position: 80px 10px",
+	)
 	css.Style(".header h1, .header h2, .header .group",
 		"font-weight: bold",
 		"margin-top: 3vh",
