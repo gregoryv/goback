@@ -21,7 +21,7 @@ func main() {
 		"border-bottom: 1px inset #000",
 	)
 	p.Style(".page .footer", "bottom: 1vh") // slightly up
-	p.Style(".right>*",
+	p.Style(".right>*, .right .shell",
 		"margin-right: 1em",
 	)
 
