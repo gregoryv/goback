@@ -73,11 +73,12 @@ func finallySection(p *Deck) {
 					),
 				),
 				Td(
-					Div(Class("course"), Em("#3<br>to be decided...")),
+					Div(Class("course"), Em("#3<br>Concurrency problems")),
 					Ol(Class("maybe"),
 						Li("Concurrency"),
 						Li("Benchmark"),
 						Li("Testing strategy"),
+						Li("... more"),
 					),
 				),
 			),

@@ -115,7 +115,7 @@ func (p *Deck) CSS() *CSS {
 	// toc
 	css.Style(".toc",
 		"position: absolute",
-		"left: 20vw",
+		"left: 27vw",
 		"width: "+vw(55),
 		"padding-top: 1em",
 	)
