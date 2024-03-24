@@ -63,6 +63,14 @@ func (p *Deck) CSS() *CSS {
 		"text-align: center",
 		"height: "+vh(footerHeight),
 	)
+	css.Style(".page .footer .next",
+		"position: absolute",
+		"right: 1em",
+	)
+	css.Style(".page .footer .prev",
+		"position: absolute",
+		"left: 1em",
+	)
 	css.Style(".page .view",
 		"font-size: "+vw(fontSize),
 		"margin: 0 0",
@@ -258,8 +266,26 @@ func (p *Deck) Document() *Page {
 
 func footer(pageIndex int, cards []*Element) *Element {
 	return Div(Class("footer"),
+		prev(pageIndex-2, cards),
+		next(pageIndex, cards),
 		pageIndex, "/", len(cards),
 	)
+}
+
+func prev(i int, cards []*Element) *Element {
+	if i >= len(cards) || i <= 0 {
+		return Em(Class("prev"), "&nbsp;")
+	}
+	e := cards[i].Children[0].(*Element)
+	return Em(Class("prev"), "&laquo; ", e.Text())
+}
+
+func next(i int, cards []*Element) *Element {
+	if i >= len(cards) || i == 1 {
+		return Em(Class("next"), "&nbsp;")
+	}
+	e := cards[i].Children[0].(*Element)
+	return Em(Class("next"), e.Text(), " &raquo;")
 }
 
 //go:embed enhance.js
