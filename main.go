@@ -341,15 +341,9 @@ go version go1.22.0 linux/amd64`,
 			30, // right column width
 		),
 	)
-	
-	// wip here
-	// ----------------------------------------
-	p.NewCard(
-		H2("Encode"),
-	)
-	p.NewCard(
-		H3("encoding/json"),
-	)
+
+	encodeSection(&p)
+
 	// ----------------------------------------
 
 	p.NewCard(

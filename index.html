@@ -669,14 +669,47 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 <div class="page" id="17"><div class="view"><div class="header"><h2>Encode</h2>
 </div>
-<div class="slide"></div>
+<div class="slide"><div style="position: absolute; left: 20vw; width: 60vw"><p>From the dictionary</p>
+<pre>encode
+  
+    &lt;algorithm, hardware&gt; To convert {data} or some physical
+    quantity into a given format.  E.g. {uuencode}.
+</pre><p>In Go this means convert <code>type X</code> to <code>[]byte</code></p>
+</div>
+</div>
 </div>
 <div class="footer">17/25</div>
 </div>
 <div class="page" id="18"><div class="view"><div class="header"><div class="group">Encode</div>
 <h3>encoding/json</h3>
 </div>
-<div class="slide"></div>
+<div class="slide"><div class="double"><div class="column left" style="width: 52vw"><div class="srcfile"><code><ol>
+<li><span class="keyword">package</span> main</li>
+<li></li>
+<li><span class="keyword">import</span> (</li>
+<li>    "encoding/json"</li>
+<li>    "fmt"</li>
+<li>)</li>
+<li></li>
+<li><span class="keyword">func</span> main() {</li>
+<li>    user := Contact{</li>
+<li>        Firstname: "John",</li>
+<li>        Lastname:  "Doe",</li>
+<li>    }</li>
+<li>    data, _ := json.Marshal(user)</li>
+<li>    fmt.Print(string(data))</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">type</span> Contact <span class="keyword">struct</span> {</li>
+<li>    Firstname string</li>
+<li>    Lastname  string</li>
+<li>}</li>
+</ol>
+</code></div>
+</div>
+<div class="column right" style="left: 60vw; width: 40vw"><pre class="shell dark">$ go run ./examples/encoding.go<br/>{"Firstname":"John","Lastname":"Doe"}</pre></div>
+</div>
+</div>
 </div>
 <div class="footer">18/25</div>
 </div>
