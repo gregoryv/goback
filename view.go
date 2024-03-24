@@ -18,7 +18,14 @@ func viewSection(p *Deck) {
 	)
 	p.NewCard(
 		H3("html/template"),
-		P(``),
+		TwoCol(
+			LoadEscaped("examples/htmltpl.go"),
+			Wrap(
+				LoadEscaped("examples/index.html"),
+				ShellEscaped("$ go run examples/htmltpl.go", "examples/htmltpl.out"),
+			),
+			48,
+		),
 	)
 	p.NewCard(
 		H3("embed"),

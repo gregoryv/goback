@@ -3,6 +3,7 @@ package main
 import (
 	_ "embed"
 	"fmt"
+	"html"
 	"os/exec"
 	"regexp"
 	"strings"
@@ -302,6 +303,18 @@ func vw(i int) string {
 	return fmt.Sprintf("%vvw", i)
 }
 
+func LoadEscaped(filename string) *Element {
+	v := files.MustLoad(filename)
+	v = strings.TrimSpace(v)
+	v = strings.ReplaceAll(v, "\t", "    ")
+	v = html.EscapeString(v)
+	v = highlight(v)
+	return Div(
+		Class("srcfile"),
+		Code(numLines(v, 1)),
+	)
+}
+
 func Load(filename string) *Element {
 	v := files.MustLoad(filename)
 	v = strings.TrimSpace(v)
@@ -355,6 +368,12 @@ func godoc(pkg, short string) *Element {
 			"pkg.go.dev/", pkg,
 		),
 	)
+}
+
+func ShellEscaped(cmd, filename string) *Element {
+	v := files.MustLoad(filename)
+	v = html.EscapeString(v)
+	return Pre(Class("shell dark"), cmd, Br(), v)
 }
 
 func Shell(cmd, filename string) *Element {
