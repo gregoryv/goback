@@ -4,12 +4,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gregoryv/deck"
 	. "github.com/gregoryv/web"
 )
 
 func main() {
-	p := deck.Deck{
+	p := Deck{
 		Title:     "Golang; Backend development",
 		Author:    "Gregory Vinčić",
 		AutoCover: true,
@@ -94,7 +93,7 @@ func main() {
 	// ----------------------------------------  ----------------------------------------
 	p.NewCard(
 		H2("Quick start"),
-		deck.Middle(70,
+		Middle(70,
 			P(`Download and install Go in the $HOME directory.`),
 			Pre(Class("shell dark"),
 				`$ cd $HOME
@@ -116,7 +115,7 @@ go version go1.22.0 linux/amd64`,
 	// ----------------------------------------
 	p.NewCard(
 		H2("Concepts"),
-		deck.Middle(70,
+		Middle(70,
 
 			P(`In Go; <b>modules</b> are used to group
 			<b>packages</b> and functions.`),
@@ -167,7 +166,7 @@ go version go1.22.0 linux/amd64`,
 		TwoCol(
 			Wrap(
 				// Span(Class("filename"), "myprogram.go"),
-				deck.Load("examples/imports.go"),
+				Load("examples/imports.go"),
 			),
 			Wrap(
 				Br(),
@@ -200,10 +199,10 @@ go version go1.22.0 linux/amd64`,
 					"https://go.dev/doc/effective_go#interfaces_and_types",
 				).With(Class("small")),
 
-				deck.Load("examples/stringer.go"),
+				Load("examples/stringer.go"),
 				pictogram("pic_interface.png", "Pictogram of a Go interface"),
 			),
-			deck.LoadLines("examples/interface.go", 7, -1),
+			LoadLines("examples/interface.go", 7, -1),
 			50,
 		),
 	)
@@ -211,18 +210,18 @@ go version go1.22.0 linux/amd64`,
 
 	p.NewCard(
 		H2("HTTP Examples"),
-		deck.Middle(68,
+		Middle(68,
 
 			P(`Respond to HTTP requests in Go by implementing the
 			http.Handler interface.`),
 
-			deck.Load("examples/handler.go"),
+			Load("examples/handler.go"),
 		),
 	)
 	p.NewCard(
 		H3("Direct"),
 		TwoCol(
-			deck.Load("examples/direct.go"),
+			Load("examples/direct.go"),
 			Wrap(
 
 				P(`Direct design uses named functions as http
@@ -243,7 +242,7 @@ go version go1.22.0 linux/amd64`,
 	p.NewCard(
 		H3("Closure"),
 		TwoCol(
-			deck.Load("examples/closure.go"),
+			Load("examples/closure.go"),
 			Wrap(
 
 				P(`Closure design uses named functions returning a
@@ -257,7 +256,7 @@ go version go1.22.0 linux/amd64`,
 	p.NewCard(
 		H3("Method"),
 		TwoCol(
-			deck.Load("examples/method.go"),
+			Load("examples/method.go"),
 			Wrap(
 
 				P(`Method design declares types that implement
@@ -272,7 +271,7 @@ go version go1.22.0 linux/amd64`,
 		H3("Combo"),
 		TwoCol(
 			Span(Class("small"),
-				deck.Load("examples/combo.go"),
+				Load("examples/combo.go"),
 			),
 			Wrap(
 
@@ -290,11 +289,11 @@ go version go1.22.0 linux/amd64`,
 	p.NewCard(
 		H2("Route"),
 
-		deck.Middle(68,
+		Middle(68,
 
 			P(`For systems serving many resources`),
 
-			deck.Load("examples/servemux.go"),
+			Load("examples/servemux.go"),
 
 			Pre(
 				`multiplexer
@@ -306,7 +305,7 @@ go version go1.22.0 linux/amd64`,
 	p.NewCard(
 		H3("Naive"),
 		TwoCol(
-			deck.LoadLines("examples/naive.go", 16, -1),
+			LoadLines("examples/naive.go", 16, -1),
 			P(`Manual routing`),
 			30, // right column width
 		),
@@ -315,7 +314,7 @@ go version go1.22.0 linux/amd64`,
 	p.NewCard(
 		H3("Combo"),
 		TwoCol(
-			deck.LoadLines("examples/combo_route.go", 9, -1),
+			LoadLines("examples/combo_route.go", 9, -1),
 			P(`Use http singleton ServeMux.`),
 			30, // right column width
 		),
