@@ -28,7 +28,6 @@ func encodeSection(p *Deck) {
 			40,
 		),
 	)
-
 	p.NewCard(
 		H3("nice json"),
 		TwoCol(
@@ -37,6 +36,17 @@ func encodeSection(p *Deck) {
 			40,
 		),
 	)
-	
+	p.NewCard(
+		H3("field tags"),
+		TwoCol(
+			Load("examples/fieldtags.go"),
+			Wrap(
+				P("Control naming of fields, eg. lowercase names."),
+				Shell("$ go run ./examples/fieldtags.go", "./examples/fieldtags.json"),
+			),
+			40,
+		),
+	)
+
 	// wip here
 }
