@@ -14,17 +14,16 @@ func main() {
 }
 
 func (c *Controller) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "GET" {
-		if r.URL.Path == "/" {
-			c.sayHello(w, r)
-			return
-		}
-		if r.URL.Path == "/bye" {
-			c.sayGoodbye(w, r)
-			return
-		}
+	switch {
+	case r.URL.Path == "/" && r.Method == "GET":
+		c.sayHello(w, r)
+	
+	case r.URL.Path == "/bye" && r.Method == "GET":
+		c.sayGoodbye(w, r)
+
+	default:
+		http.Error(w, "routing failed", http.StatusBadRequest)
 	}
-	http.Error(w, "routing failed", http.StatusBadRequest)
 }
 
 type Controller struct{}

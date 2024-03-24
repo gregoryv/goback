@@ -305,7 +305,7 @@ go version go1.22.0 linux/amd64`,
 	p.NewCard(
 		H3("Naive"),
 		TwoCol(
-			LoadLines("examples/naive.go", 16, -1),
+			LoadLines("examples/naive.go", 16, 27),
 			P(`Manual routing`),
 			30, // right column width
 		),

@@ -325,7 +325,6 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>    dur := uptime.Since(start)</li>
 <li>    fmt.Println(dur.String())</li>
 <li>}</li>
-<li></li>
 </ol>
 </code></div>
 </div>
@@ -348,7 +347,6 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li><span class="keyword">type</span> Stringer <span class="keyword">interface</span> {</li>
 <li>    String() string</li>
 <li>}</li>
-<li></li>
 </ol>
 </code></div>
 <div class="pictogram"><img src="img/pic_interface.png"/><br/><label>Pictogram of a Go interface</label></div>
@@ -374,7 +372,6 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li><span class="keyword">func</span> painted(value <span class="type">fmt.Stringer</span>) string {</li>
 <li>    <span class="keyword">return</span> fmt.Sprintf("Painted: %s", value.String())</li>
 <li>}</li>
-<li></li>
 </ol>
 </code></div>
 </div>
@@ -403,7 +400,6 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li><span class="keyword">type</span> HandlerFunc <span class="keyword">func</span>(ResponseWriter, *Request)</li>
 <li></li>
 <li><span class="keyword">func</span> (f HandlerFunc) ServeHTTP(w ResponseWriter, r *Request)</li>
-<li></li>
 </ol>
 </code></div>
 </div>
@@ -433,7 +429,6 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li><span class="keyword">func</span> sayHello(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
 <li>    fmt.Fprint(w, "Hello, world!")</li>
 <li>}</li>
-<li></li>
 </ol>
 </code></div>
 </div>
@@ -471,7 +466,6 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>        fmt.Fprint(w, txt)</li>
 <li>    }</li>
 <li>}</li>
-<li></li>
 </ol>
 </code></div>
 </div>
@@ -507,7 +501,6 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li><span class="keyword">func</span> (g *Greeter) ServeHTTP(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
 <li>    fmt.Fprint(w, "Hello, world!")</li>
 <li>}</li>
-<li></li>
 </ol>
 </code></div>
 </div>
@@ -545,7 +538,6 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li><span class="keyword">func</span> (c *Controller) sayHello(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
 <li>    fmt.Fprint(w, "Hello, world!")</li>
 <li>}</li>
-<li></li>
 </ol>
 </code></div>
 </span></div>
@@ -571,7 +563,6 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li><span class="keyword">type</span> ServeMux <span class="keyword">struct</span> {</li>
 <li>    <span class="comment">// Has unexported fields.</span></li>
 <li>}</li>
-<li></li>
 </ol>
 </code></div>
 <pre>multiplexer
@@ -586,29 +577,17 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 62vw"><div class="srcfile"><code><ol start="16">
 <li><span class="keyword">func</span> (c *Controller) ServeHTTP(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
-<li>    <span class="keyword">if</span> r.Method == "GET" {</li>
-<li>        <span class="keyword">if</span> r.URL.Path == "/" {</li>
-<li>            c.sayHello(w, r)</li>
-<li>            <span class="keyword">return</span></li>
-<li>        }</li>
-<li>        <span class="keyword">if</span> r.URL.Path == "/bye" {</li>
-<li>            c.sayGoodbye(w, r)</li>
-<li>            <span class="keyword">return</span></li>
-<li>        }</li>
+<li>    <span class="keyword">switch</span> {</li>
+<li>    <span class="keyword">case</span> r.URL.Path == "/" && r.Method == "GET":</li>
+<li>        c.sayHello(w, r)</li>
+<li>    </li>
+<li>    <span class="keyword">case</span> r.URL.Path == "/bye" && r.Method == "GET":</li>
+<li>        c.sayGoodbye(w, r)</li>
+<li></li>
+<li>    <span class="keyword">default</span>:</li>
+<li>        http.Error(w, "routing failed", <span class="type">http.StatusBadRequest</span>)</li>
 <li>    }</li>
-<li>    http.Error(w, "routing failed", <span class="type">http.StatusBadRequest</span>)</li>
 <li>}</li>
-<li></li>
-<li><span class="keyword">type</span> Controller <span class="keyword">struct</span>{}</li>
-<li></li>
-<li><span class="keyword">func</span> (c *Controller) sayHello(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
-<li>    fmt.Fprint(w, "Hello, world!")</li>
-<li>}</li>
-<li></li>
-<li><span class="keyword">func</span> (c *Controller) sayGoodbye(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
-<li>    fmt.Fprint(w, "Goodbye, world!")</li>
-<li>}</li>
-<li></li>
 </ol>
 </code></div>
 </div>
@@ -641,7 +620,6 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li><span class="keyword">func</span> (c *Controller) sayGoodbye(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
 <li>    fmt.Fprint(w, "Goodbye, world!")</li>
 <li>}</li>
-<li></li>
 </ol>
 </code></div>
 </div>
