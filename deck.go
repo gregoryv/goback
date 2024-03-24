@@ -67,10 +67,12 @@ func (p *Deck) CSS() *CSS {
 	css.Style(".page .footer .next",
 		"position: absolute",
 		"right: 1em",
+		"cursor: pointer",
 	)
 	css.Style(".page .footer .prev",
 		"position: absolute",
 		"left: 1em",
+		"cursor: pointer",
 	)
 	css.Style(".page .view",
 		"font-size: "+vw(fontSize),
@@ -293,7 +295,7 @@ func prev(i int, cards []*Element) *Element {
 		return Em(Class("prev"), "&nbsp;")
 	}
 	e := cards[i].Children[0].(*Element)
-	return Em(Class("prev"), "&laquo; ", e.Text())
+	return Em(Class("prev"), Attr("onclick", "previousPage()"), "&laquo; ", e.Text())
 }
 
 func next(i int, cards []*Element) *Element {
@@ -301,7 +303,7 @@ func next(i int, cards []*Element) *Element {
 		return Em(Class("next"), "&nbsp;")
 	}
 	e := cards[i].Children[0].(*Element)
-	return Em(Class("next"), e.Text(), " &raquo;")
+	return Em(Class("next"), Attr("onclick", "nextPage()"), e.Text(), " &raquo;")
 }
 
 //go:embed enhance.js
