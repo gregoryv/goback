@@ -71,8 +71,7 @@ func httpExamples(p *Deck) {
 			Wrap(
 
 				P(`Combo design declares types with multiple methods
-				that are either methods that either have a
-				http.HandlerFunc signature or return one (closure).`),
+				with htt.HandlerFunc signature or return one (closure).`),
 
 				pictogram("pic_combined_closure.png", "Combo"),
 			),
