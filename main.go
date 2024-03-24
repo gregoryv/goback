@@ -83,13 +83,23 @@ func main() {
 		"column-count: 3",
 		"list-style-type: none",
 	)
-	// wip style
+
 	p.Style(".small *",
 		"font-size: 0.9vw",
 	)
 	p.Style(".right .srcfile, .right .shell, .right p",
 		"margin-right: 1em",
 	)
+	p.Style(".stop img",
+		"text-align: middle",
+		"float:left",
+		"margin-right: 20px",
+	)
+	p.Style(".stop>p",
+		"padding-top: 50px",
+		"color: red",
+	)
+	// wip style	
 	// ----------------------------------------  ----------------------------------------
 	p.NewCard(
 		H2("Quick start"),
@@ -306,8 +316,11 @@ go version go1.22.0 linux/amd64`,
 		H3("Naive"),
 		TwoCol(
 			LoadLines("examples/naive.go", 16, 27),
-			P(`Manual routing`),
-			30, // right column width
+			Wrap(
+				P(`Manual routing.`),
+				stop(`Error prone and complex.`),
+			),
+			37, // right column width
 		),
 	)
 	// wip here
@@ -370,6 +383,13 @@ Error handling
 `),
 	)
 	p.Document().SaveAs("index.html")
+}
+
+func stop(txt string) *Element {
+	return Div(Class("stop"),
+		Img(Src("img/stop.png")),
+		P(txt),
+	)
 }
 
 func TwoCol(e1, e2 any, width int) *Element {

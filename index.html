@@ -219,6 +219,15 @@ font-size: 0.9vw;
 .right .srcfile, .right .shell, .right p {
 margin-right: 1em;
 }
+.stop img {
+text-align: middle;
+float:left;
+margin-right: 20px;
+}
+.stop>p {
+padding-top: 50px;
+color: red;
+}
 </style>
 </head>
 <body>
@@ -575,7 +584,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <div class="page" id="14"><div class="view"><div class="header"><div class="group">Route</div>
 <h3>Naive</h3>
 </div>
-<div class="slide"><div class="double"><div class="column left" style="width: 62vw"><div class="srcfile"><code><ol start="16">
+<div class="slide"><div class="double"><div class="column left" style="width: 55vw"><div class="srcfile"><code><ol start="16">
 <li><span class="keyword">func</span> (c *Controller) ServeHTTP(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
 <li>    <span class="keyword">switch</span> {</li>
 <li>    <span class="keyword">case</span> r.URL.Path == "/" && r.Method == "GET":</li>
@@ -591,7 +600,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </ol>
 </code></div>
 </div>
-<div class="column right" style="left: 70vw; width: 30vw"><p>Manual routing</p>
+<div class="column right" style="left: 63vw; width: 37vw"><p>Manual routing.</p>
+<div class="stop"><img src="img/stop.png"/><p>Error prone and complex.</p>
+</div>
 </div>
 </div>
 </div>
