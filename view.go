@@ -32,15 +32,14 @@ func viewSection(p *Deck) {
 
 		TwoCol(
 			LoadEscaped("examples/embed.go"),
-			
+
 			P(
 				quote(
-				"Package embed provides access to files embedded in the running Go program.",
-				"https://pkg.go.dev/embed",
+					"Package embed provides access to files embedded in the running Go program.",
+					"https://pkg.go.dev/embed",
 				),
 			),
 			40,
 		),
 	)
-	// wip here
 }

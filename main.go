@@ -132,21 +132,7 @@ go version go1.22.0 linux/amd64`,
 	testSection(&p)
 	viewSection(&p)
 
-	// ----------------------------------------
-
-	p.NewCard(
-		H2("Next time"),
-
-		Pre(`
-Design patterns
-  - access control
-
-Benchmarking
-Logging
-Error handling
-
-`),
-	)
+	finallySection(&p)
 	p.Document().SaveAs("index.html")
 }
 
