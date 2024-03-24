@@ -41,7 +41,7 @@ func httpExamples(p *Deck) {
 			Wrap(
 
 				P(`Closure design uses named functions returning a
-                http.Handler implementation`),
+                http.Handler.`),
 
 				pictogram("pic_closure.png", "Closure"),
 			),
