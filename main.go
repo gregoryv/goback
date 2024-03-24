@@ -229,7 +229,7 @@ go version go1.22.0 linux/amd64`,
 		),
 	)
 	p.NewCard(
-		H3("Direct"),
+		H3("direct"),
 		TwoCol(
 			Load("examples/direct.go"),
 			Wrap(
@@ -250,7 +250,7 @@ go version go1.22.0 linux/amd64`,
 		),
 	)
 	p.NewCard(
-		H3("Closure"),
+		H3("closure"),
 		TwoCol(
 			Load("examples/closure.go"),
 			Wrap(
@@ -264,7 +264,7 @@ go version go1.22.0 linux/amd64`,
 		),
 	)
 	p.NewCard(
-		H3("Method"),
+		H3("method"),
 		TwoCol(
 			Load("examples/method.go"),
 			Wrap(
@@ -278,7 +278,7 @@ go version go1.22.0 linux/amd64`,
 		),
 	)
 	p.NewCard(
-		H3("Combo"),
+		H3("combo"),
 		TwoCol(
 			Span(Class("small"),
 				Load("examples/combo.go"),
@@ -313,7 +313,7 @@ go version go1.22.0 linux/amd64`,
 		),
 	)
 	p.NewCard(
-		H3("Naive"),
+		H3("naive"),
 		TwoCol(
 			LoadLines("examples/naive.go", 16, 27),
 			Wrap(
@@ -325,7 +325,7 @@ go version go1.22.0 linux/amd64`,
 	)
 
 	p.NewCard(
-		H3("Default http.ServeMux"),
+		H3("default http.ServeMux"),
 		TwoCol(
 			LoadLines("examples/singleton_mux.go", 9, -1),
 			P(`Use http singleton ServeMux.`),
@@ -334,7 +334,7 @@ go version go1.22.0 linux/amd64`,
 	)
 
 	p.NewCard(
-		H3("Your own http.ServeMux"),
+		H3("your own http.ServeMux"),
 		TwoCol(
 			LoadFunc("examples/own_mux.go", "main"),
 			P(`Create your own http.ServeMux.`),
