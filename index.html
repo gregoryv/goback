@@ -255,8 +255,8 @@ color: red;
 <li class="h3"><a href="#12">Combo</a></li>
 <li class="h2"><a href="#13">Route</a></li>
 <li class="h3"><a href="#14">Naive</a></li>
-<li class="h3"><a href="#15">Combo</a></li>
-<li class="h3"><a href="#16">http.ServeMux</a></li>
+<li class="h3"><a href="#15">Default http.ServeMux</a></li>
+<li class="h3"><a href="#16">Your own http.ServeMux</a></li>
 <li class="h2"><a href="#17">Encode</a></li>
 <li class="h3"><a href="#18">encoding/json</a></li>
 <li class="h2"><a href="#19">Test</a></li>
@@ -589,7 +589,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>    <span class="keyword">switch</span> {</li>
 <li>    <span class="keyword">case</span> r.URL.Path == "/" && r.Method == "GET":</li>
 <li>        c.sayHello(w, r)</li>
-<li>    </li>
+<li></li>
 <li>    <span class="keyword">case</span> r.URL.Path == "/bye" && r.Method == "GET":</li>
 <li>        c.sayGoodbye(w, r)</li>
 <li></li>
@@ -610,7 +610,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <div class="footer">14/25</div>
 </div>
 <div class="page" id="15"><div class="view"><div class="header"><div class="group">Route</div>
-<h3>Combo</h3>
+<h3>Default http.ServeMux</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 62vw"><div class="srcfile"><code><ol start="9">
 <li><span class="keyword">func</span> main() {</li>
@@ -642,9 +642,28 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <div class="footer">15/25</div>
 </div>
 <div class="page" id="16"><div class="view"><div class="header"><div class="group">Route</div>
-<h3>http.ServeMux</h3>
+<h3>Your own http.ServeMux</h3>
 </div>
-<div class="slide"></div>
+<div class="slide"><div class="double"><div class="column left" style="width: 62vw"><ul class="srcfile">
+<code><ol>
+<li><span class="keyword">func</span> main() {</li>
+<li>    <span class="keyword">var</span> ctl Controller</li>
+<li></li>
+<li>    mux := http.NewServeMux()</li>
+<li>    mux.HandleFunc("GET /", <span class="type">ctl.sayHello</span>)</li>
+<li>    mux.HandleFunc("GET /bye", <span class="type">ctl.sayGoodbye</span>)</li>
+<li></li>
+<li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", mux); err != nil {</li>
+<li>        log.Fatal(err)</li>
+<li>    }</li>
+<li>}</li>
+</ol>
+</code></ul>
+</div>
+<div class="column right" style="left: 70vw; width: 30vw"><p>Create your own http.ServeMux.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="footer">16/25</div>
 </div>

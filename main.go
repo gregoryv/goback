@@ -99,7 +99,7 @@ func main() {
 		"padding-top: 50px",
 		"color: red",
 	)
-	// wip style	
+	// wip style
 	// ----------------------------------------  ----------------------------------------
 	p.NewCard(
 		H2("Quick start"),
@@ -323,19 +323,26 @@ go version go1.22.0 linux/amd64`,
 			37, // right column width
 		),
 	)
-	// wip here
+
 	p.NewCard(
-		H3("Combo"),
+		H3("Default http.ServeMux"),
 		TwoCol(
-			LoadLines("examples/combo_route.go", 9, -1),
+			LoadLines("examples/singleton_mux.go", 9, -1),
 			P(`Use http singleton ServeMux.`),
 			30, // right column width
 		),
 	)
 
 	p.NewCard(
-		H3("http.ServeMux"),
+		H3("Your own http.ServeMux"),
+		TwoCol(
+			LoadFunc("examples/own_mux.go", "main"),
+			P(`Create your own http.ServeMux.`),
+			30, // right column width
+		),
 	)
+	
+	// wip here
 	// ----------------------------------------
 	p.NewCard(
 		H2("Encode"),
