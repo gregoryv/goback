@@ -130,19 +130,9 @@ go version go1.22.0 linux/amd64`,
 	routeSection(&p)
 	encodeSection(&p)
 	testSection(&p)
+	viewSection(&p)
 
 	// ----------------------------------------
-
-	p.NewCard(
-		H2("View"),
-	)
-	p.NewCard(
-		H3("html/template"),
-		P(``),
-	)
-	p.NewCard(
-		H3("embed"),
-	)
 
 	p.NewCard(
 		H2("Next time"),
