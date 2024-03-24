@@ -790,7 +790,39 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 <div class="page" id="21"><div class="view"><div class="header"><h2>Test</h2>
 </div>
-<div class="slide"><p></p>
+<div class="slide"><div class="double"><div class="column left" style="width: 42vw"><div class="filename">main_test.go</div>
+<div class="srcfile"><code><ol>
+<li><span class="keyword">package</span> main</li>
+<li></li>
+<li><span class="keyword">import</span> "testing"</li>
+<li></li>
+<li><span class="keyword">func</span> TestSum(t *<span class="type">testing.T</span>) {</li>
+<li>    <span class="keyword">if</span> s := Sum(1, 2); s != 3 {</li>
+<li>        t.Errorf("got %v, expect 3", s)</li>
+<li>    }</li>
+<li>}</li>
+</ol>
+</code></div>
+<div class="filename">main.go</div>
+<div class="srcfile"><code><ol start="6">
+<li><span class="keyword">func</span> Sum(a, b int) int {</li>
+<li>    <span class="keyword">return</span> a + b</li>
+<li>}</li>
+</ol>
+</code></div>
+</div>
+<div class="column right" style="left: 50vw; width: 50vw"><pre>.
+├── go.mod
+├── main.go
+└── main_test.go
+
+0 directories, 3 files
+</pre><pre class="shell dark">$ go test -v .<br/>=== RUN   TestSum
+--- PASS: TestSum (0.00s)
+PASS
+ok  	github.com/gregoryv/project	0.001s
+</pre></div>
+</div>
 </div>
 </div>
 <div class="footer">21/27</div>

@@ -1,0 +1,4 @@
+=== RUN   TestSum
+--- PASS: TestSum (0.00s)
+PASS
+ok  	github.com/gregoryv/project	0.001s

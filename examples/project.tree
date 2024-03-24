@@ -1,0 +1,6 @@
+.
+├── go.mod
+├── main.go
+└── main_test.go
+
+0 directories, 3 files
