@@ -9,13 +9,15 @@ import (
 func main() {
 	var ctl Controller
 
-	if err := http.ListenAndServe(":8080", http.HandlerFunc(ctl.sayHello)); err != nil {
+	if err := http.ListenAndServe(":8080", ctl.sayHello()); err != nil {
 		log.Fatal(err)
 	}
 }
 
 type Controller struct{}
 
-func (c *Controller) sayHello(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Hello, world!")
+func (c *Controller) sayHello() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "Hello, world!")
+	}
 }

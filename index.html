@@ -312,7 +312,7 @@ border-bottom: 1px solid black;
 <div class="page" id="3"><div class="view"><div class="header"><h2>Introduction</h2>
 </div>
 <div class="slide"><div style="position: absolute; left: 20vw; width: 60vw"><p>The goal of this presentation is to teach you Go
-		    concepts when writing applications serving HTTP
+		    concepts when writing programs serving HTTP
 		    requests.</p>
 </div>
 </div>
@@ -616,15 +616,17 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li><span class="keyword">func</span> main() {</li>
 <li>    <span class="keyword">var</span> ctl Controller</li>
 <li></li>
-<li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", http.HandlerFunc(<span class="type">ctl.sayHello</span>)); err != nil {</li>
+<li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", ctl.sayHello()); err != nil {</li>
 <li>        log.Fatal(err)</li>
 <li>    }</li>
 <li>}</li>
 <li></li>
 <li><span class="keyword">type</span> Controller <span class="keyword">struct</span>{}</li>
 <li></li>
-<li><span class="keyword">func</span> (c *Controller) sayHello(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
-<li>    fmt.Fprint(w, "Hello, world!")</li>
+<li><span class="keyword">func</span> (c *Controller) sayHello() http.HandlerFunc {</li>
+<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>        fmt.Fprint(w, "Hello, world!")</li>
+<li>    }</li>
 <li>}</li>
 </ol>
 </code></div>
@@ -690,7 +692,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <div class="page" id="17"><div class="view"><div class="header"><div class="group">Route</div>
 <h3>Default http.ServeMux</h3>
 </div>
-<div class="slide"><div class="double"><div class="column left" style="width: 62vw"><div class="srcfile"><code><ol start="9">
+<div class="slide"><div class="double"><div class="column left" style="width: 57vw"><div class="srcfile"><code><ol start="9">
 <li><span class="keyword">func</span> main() {</li>
 <li>    <span class="keyword">var</span> ctl Controller</li>
 <li>    http.HandleFunc("GET /", <span class="type">ctl.sayHello</span>)</li>
@@ -712,7 +714,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </ol>
 </code></div>
 </div>
-<div class="column right" style="left: 70vw; width: 30vw"><p>Use http singleton ServeMux.</p>
+<div class="column right" style="left: 65vw; width: 35vw"><p>Use http singleton ServeMux.</p>
 </div>
 </div>
 </div>
@@ -722,7 +724,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <div class="page" id="18"><div class="view"><div class="header"><div class="group">Route</div>
 <h3>Your own http.ServeMux</h3>
 </div>
-<div class="slide"><div class="double"><div class="column left" style="width: 62vw"><div class="srcfile"><code><ol start="9">
+<div class="slide"><div class="double"><div class="column left" style="width: 55vw"><div class="srcfile"><code><ol start="9">
 <li><span class="keyword">func</span> main() {</li>
 <li>    <span class="keyword">var</span> ctl Controller</li>
 <li></li>
@@ -747,7 +749,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </ol>
 </code></div>
 </div>
-<div class="column right" style="left: 70vw; width: 30vw"><p>Create your own http.ServeMux.</p>
+<div class="column right" style="left: 63vw; width: 37vw"><p>Create your own http.ServeMux.</p>
 </div>
 </div>
 </div>
@@ -1099,12 +1101,13 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <tr><th colspan="2">Go language/structure</th></tr>
 <tr><td>module</td><td>for dependency management</td></tr>
 <tr><td>package</td><td>grouping related code</td></tr>
-<tr><td>interface</td><td>behaviour abstraction</td></tr>
+<tr><td>interface</td><td>behavior abstraction</td></tr>
 <tr><th colspan="2"><br/>Package</th></tr>
 <tr><td>net/http</td><td>handling requests and routing</td></tr>
 <tr><td>net/http/httptest</td><td>utilities for HTTP testing</td></tr>
 <tr><td>testing</td><td>automated testing of Go packages</td></tr>
 <tr><td>encoding/json</td><td>marshaling datatypes to JSON</td></tr>
+<tr><td>html/template</td><td>rendering HTML</td></tr>
 <tr><td>embed</td><td>provides access to embedded files</td></tr>
 </table>
 </div>

@@ -9,7 +9,7 @@ func introSection(p *Deck) {
 		Middle(60,
 
 			P(`The goal of this presentation is to teach you Go
-		    concepts when writing applications serving HTTP
+		    concepts when writing programs serving HTTP
 		    requests.`),
 		),
 	)

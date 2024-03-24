@@ -36,7 +36,7 @@ func routeSection(p *Deck) {
 		TwoCol(
 			LoadLines("examples/singleton_mux.go", 9, -1),
 			P(`Use http singleton ServeMux.`),
-			30, // right column width
+			35, // right column width
 		),
 	)
 
@@ -45,7 +45,7 @@ func routeSection(p *Deck) {
 		TwoCol(
 			LoadLines("examples/own_mux.go", 9, -1),
 			P(`Create your own http.ServeMux.`),
-			30, // right column width
+			37, // right column width
 		),
 	)
 }
