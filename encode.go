@@ -29,5 +29,14 @@ func encodeSection(p *Deck) {
 		),
 	)
 
+	p.NewCard(
+		H3("nice json"),
+		TwoCol(
+			Load("examples/nicejson.go"),
+			Shell("$ go run ./examples/nicejson.go", "./examples/nicejson.json"),
+			40,
+		),
+	)
+	
 	// wip here
 }
