@@ -25,7 +25,7 @@ func conceptsSection(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("module"),
+		H3("Module"),
 		TwoCol(
 			Wrap(
 				P(`Modules are initiated using the repository URL.`),
@@ -51,7 +51,7 @@ func conceptsSection(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("package"),
+		H3("Package"),
 
 		TwoCol(
 			Wrap(
@@ -75,7 +75,7 @@ func conceptsSection(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("interface"),
+		H3("Interface"),
 
 		TwoCol(
 			Wrap(

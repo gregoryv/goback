@@ -20,7 +20,7 @@ func routeSection(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("naive"),
+		H3("Naive"),
 		TwoCol(
 			LoadLines("examples/naive.go", 16, 27),
 			Wrap(
@@ -32,7 +32,7 @@ func routeSection(p *Deck) {
 	)
 
 	p.NewCard(
-		H3("default http.ServeMux"),
+		H3("Default http.ServeMux"),
 		TwoCol(
 			LoadLines("examples/singleton_mux.go", 9, -1),
 			P(`Use http singleton ServeMux.`),
@@ -41,7 +41,7 @@ func routeSection(p *Deck) {
 	)
 
 	p.NewCard(
-		H3("your own http.ServeMux"),
+		H3("Your own http.ServeMux"),
 		TwoCol(
 			LoadLines("examples/own_mux.go", 9, -1),
 			P(`Create your own http.ServeMux.`),

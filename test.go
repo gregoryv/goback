@@ -34,7 +34,7 @@ func testSection(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("coverage"),
+		H3("Coverage"),
 		Shell("$ go test -v -cover .", "examples/httptest_cover.out"),
 		Div(Class("small"),
 			TwoCol(

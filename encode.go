@@ -21,7 +21,7 @@ func encodeSection(p *Deck) {
 	)
 
 	p.NewCard(
-		H3("encoding/json"),
+		H3("Encoding/json"),
 		TwoCol(
 			Load("examples/encoding.go"),
 			Shell("$ go run ./examples/encoding.go", "./examples/encoding.json"),
@@ -29,7 +29,7 @@ func encodeSection(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("nice json"),
+		H3("Nice json"),
 		TwoCol(
 			Load("examples/nicejson.go"),
 			Shell("$ go run ./examples/nicejson.go", "./examples/nicejson.json"),
@@ -37,7 +37,7 @@ func encodeSection(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("field tags"),
+		H3("Field tags"),
 		TwoCol(
 			Load("examples/fieldtags.go"),
 			Wrap(

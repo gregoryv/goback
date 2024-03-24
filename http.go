@@ -14,7 +14,7 @@ func httpExamples(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("direct"),
+		H3("Direct"),
 		TwoCol(
 			Load("examples/direct.go"),
 			Wrap(
@@ -35,7 +35,7 @@ func httpExamples(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("closure"),
+		H3("Closure"),
 		TwoCol(
 			Load("examples/closure.go"),
 			Wrap(
@@ -49,7 +49,7 @@ func httpExamples(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("method"),
+		H3("Method"),
 		TwoCol(
 			Load("examples/method.go"),
 			Wrap(
@@ -63,7 +63,7 @@ func httpExamples(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("combo"),
+		H3("Combo"),
 		TwoCol(
 			Span(Class("small"),
 				Load("examples/combo.go"),
