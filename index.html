@@ -223,6 +223,9 @@ list-style-type: none;
 .small * {
 font-size: 0.9vw;
 }
+.small .filename {
+margin-bottom: -1.5em;
+}
 .right .srcfile, .right .shell, .right p {
 margin-right: 1em;
 }
@@ -874,7 +877,51 @@ ok  	github.com/gregoryv/project	0.001s
 <div class="page" id="23"><div class="view"><div class="header"><div class="group">Test</div>
 <h3>coverage</h3>
 </div>
-<div class="slide"></div>
+<div class="slide"><div class="small"><div class="double"><div class="column left" style="width: 42vw"><div class="filename">main_test.go</div>
+<div class="srcfile"><code><ol start="9">
+<li><span class="keyword">func</span> Test_sayHello(t *<span class="type">testing.T</span>) {</li>
+<li>    <span class="comment">// prepare response recorder and request</span></li>
+<li>    w := httptest.NewRecorder()</li>
+<li>    r := httptest.NewRequest("GET", "/", <span class="type">http.NoBody</span>)</li>
+<li></li>
+<li>    <span class="comment">// call handler</span></li>
+<li>    handler := sayHello() <span class="comment">// using the closure design</span></li>
+<li>    handler(w, r)</li>
+<li></li>
+<li>    <span class="comment">// check result</span></li>
+<li>    resp := w.Result()</li>
+<li>    <span class="keyword">if</span> v := resp.StatusCode; v != 200 {</li>
+<li>        t.Error(<span class="type">resp.Status</span>)</li>
+<li>    }</li>
+<li>}</li>
+</ol>
+</code></div>
+<div class="filename">main.go</div>
+<div class="srcfile"><code><ol start="9">
+<li><span class="keyword">func</span> main() {</li>
+<li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", sayHello()); err != nil {</li>
+<li>        log.Fatal(err)</li>
+<li>    }</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">func</span> sayHello() http.HandlerFunc {</li>
+<li>    txt := "Hello, world!"</li>
+<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>        fmt.Fprint(w, txt)</li>
+<li>    }</li>
+<li>}</li>
+</ol>
+</code></div>
+</div>
+<div class="column right" style="left: 50vw; width: 50vw"><pre class="shell dark">$ go test -v -cover .<br/>=== RUN   Test_sayHello
+--- PASS: Test_sayHello (0.00s)
+PASS
+coverage: 60.0% of statements
+ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="footer">23/27</div>
 </div>

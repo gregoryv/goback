@@ -35,6 +35,19 @@ func testSection(p *Deck) {
 	)
 	p.NewCard(
 		H3("coverage"),
+		Div(Class("small"),
+			TwoCol(
+				Wrap(
+					Div(Class("filename"), "main_test.go"),
+					LoadLines("examples/httptest/main_test.go", 9, -1),
+
+					Div(Class("filename"), "main.go"),
+					LoadLines("examples/httptest/main.go", 9, -1),
+				),
+				Shell("$ go test -v -cover .", "examples/httptest_cover.out"),
+				50,
+			),
+		),
 	)
 	// wip here
 }

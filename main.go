@@ -87,6 +87,9 @@ func main() {
 	p.Style(".small *",
 		"font-size: 0.9vw",
 	)
+	p.Style(".small .filename",
+		"margin-bottom: -1.5em",
+	)
 	p.Style(".right .srcfile, .right .shell, .right p",
 		"margin-right: 1em",
 	)

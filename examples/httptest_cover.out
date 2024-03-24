@@ -1,0 +1,5 @@
+=== RUN   Test_sayHello
+--- PASS: Test_sayHello (0.00s)
+PASS
+coverage: 60.0% of statements
+ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
