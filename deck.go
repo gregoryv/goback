@@ -114,6 +114,15 @@ func (p *Deck) CSS() *CSS {
 		"margin-left: 5vw",
 		"list-style-type: circle",
 	)
+
+	css.Style(".trail",
+		"position: absolute",
+		"height: 6px",
+		"width: 6px",
+		"border-radius: 3px",
+		"background: teal",
+	)
+
 	css = css.With(layoutView())
 
 	css = css.With(srcfile(fontSize))
@@ -241,6 +250,8 @@ func (p *Deck) Document() *Page {
 			body,
 			Script(
 				string(enhance),
+
+				string(trail),
 			),
 		),
 	)
@@ -254,6 +265,9 @@ func footer(pageIndex int, cards []*Element) *Element {
 
 //go:embed enhance.js
 var enhance []byte
+
+//go:embed trail.js
+var trail []byte
 
 func vh(i int) string {
 	return fmt.Sprintf("%vvh", i)

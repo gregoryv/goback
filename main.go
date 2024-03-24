@@ -90,8 +90,8 @@ func main() {
 	p.Style(".right .srcfile, .right .shell, .right p",
 		"margin-right: 1em",
 	)
-	p.Style(".stop img",
-		"text-align: middle",
+	p.Style(".stop>img",
+		"text-align: center",
 		"float:left",
 		"margin-right: 20px",
 	)

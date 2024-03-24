@@ -12,7 +12,7 @@ func Test_sayHello(t *testing.T) {
 	r := httptest.NewRequest("GET", "/", http.NoBody)
 
 	// call handler
-	handler := sayHello()
+	handler := sayHello() // using the closure design
 	handler(w, r)
 
 	// check result

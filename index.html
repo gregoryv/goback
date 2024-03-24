@@ -77,6 +77,13 @@ text-decoration: underline;
 margin-left: 5vw;
 list-style-type: circle;
 }
+.trail {
+position: absolute;
+height: 6px;
+width: 6px;
+border-radius: 3px;
+background: teal;
+}
 .outline {
 border: 1px solid black;
 }
@@ -219,8 +226,8 @@ font-size: 0.9vw;
 .right .srcfile, .right .shell, .right p {
 margin-right: 1em;
 }
-.stop img {
-text-align: middle;
+.stop>img {
+text-align: center;
 float:left;
 margin-right: 20px;
 }
@@ -830,7 +837,37 @@ ok  	github.com/gregoryv/project	0.001s
 <div class="page" id="22"><div class="view"><div class="header"><div class="group">Test</div>
 <h3>http/httptest</h3>
 </div>
-<div class="slide"></div>
+<div class="slide"><div class="double"><div class="column left" style="width: 52vw"><div class="srcfile"><code><ol>
+<li><span class="keyword">package</span> main</li>
+<li></li>
+<li><span class="keyword">import</span> (</li>
+<li>    "net/http"</li>
+<li>    "net/http/httptest"</li>
+<li>    "testing"</li>
+<li>)</li>
+<li></li>
+<li><span class="keyword">func</span> Test_sayHello(t *<span class="type">testing.T</span>) {</li>
+<li>    <span class="comment">// prepare response recorder and request</span></li>
+<li>    w := httptest.NewRecorder()</li>
+<li>    r := httptest.NewRequest("GET", "/", <span class="type">http.NoBody</span>)</li>
+<li></li>
+<li>    <span class="comment">// call handler</span></li>
+<li>    handler := sayHello() <span class="comment">// using the closure design</span></li>
+<li>    handler(w, r)</li>
+<li></li>
+<li>    <span class="comment">// check result</span></li>
+<li>    resp := w.Result()</li>
+<li>    <span class="keyword">if</span> v := resp.StatusCode; v != 200 {</li>
+<li>        t.Error(<span class="type">resp.Status</span>)</li>
+<li>    }</li>
+<li>}</li>
+</ol>
+</code></div>
+</div>
+<div class="column right" style="left: 60vw; width: 40vw"><p>Quick unit test of specific handlers using httptest.Recorder</p>
+</div>
+</div>
+</div>
 </div>
 <div class="footer">22/27</div>
 </div>
@@ -948,5 +985,73 @@ function getPos() {
     return parseInt(currentView.split('#').join(''))
 }
 
+// dots is an array of Dot objects,
+// mouse is an object used to track the X and Y position
+   // of the mouse, set with a mousemove event listener below
+var dots = [],
+    mouse = {
+      x: 0,
+      y: 0
+    };
+
+// The Dot object used to scaffold the dots
+var Dot = function() {
+  this.x = 0;
+  this.y = 0;
+  this.node = (function(){
+    var n = document.createElement("div");
+    n.className = "trail";
+    document.body.appendChild(n);
+    return n;
+  }());
+};
+// The Dot.prototype.draw() method sets the position of 
+  // the object's <div> node
+Dot.prototype.draw = function() {
+  this.node.style.left = this.x + "px";
+  this.node.style.top = this.y + "px";
+};
+
+// Creates the Dot objects, populates the dots array
+for (var i = 0; i < 12; i++) {
+  var d = new Dot();
+  dots.push(d);
+}
+
+// This is the screen redraw function
+function draw() {
+  // Make sure the mouse position is set everytime
+    // draw() is called.
+  var x = mouse.x,
+      y = mouse.y;
+  
+  // This loop is where all the 90s magic happens
+  dots.forEach(function(dot, index, dots) {
+    var nextDot = dots[index + 1] || dots[0];
+    
+    dot.x = x;
+    dot.y = y;
+    dot.draw();
+    x += (nextDot.x - dot.x) * .6;
+    y += (nextDot.y - dot.y) * .6;
+
+  });
+}
+
+addEventListener("mousemove", function(event) {
+  //event.preventDefault();
+  mouse.x = event.pageX;
+  mouse.y = event.pageY;
+});
+
+// animate() calls draw() then recursively calls itself
+  // everytime the screen repaints via requestAnimationFrame().
+function animate() {
+  draw();
+  requestAnimationFrame(animate);
+}
+
+// And get it started by calling animate().
+animate();
 </script>
 </html>

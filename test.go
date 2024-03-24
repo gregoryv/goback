@@ -27,6 +27,11 @@ func testSection(p *Deck) {
 	)
 	p.NewCard(
 		H3("http/httptest"),
+		TwoCol(
+			Load("examples/httptest/main_test.go"),
+			P(`Quick unit test of specific handlers using httptest.Recorder`),
+			40,
+		),
 	)
 	p.NewCard(
 		H3("coverage"),
