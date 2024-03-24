@@ -106,27 +106,7 @@ func main() {
 	)
 	// wip style
 	// ----------------------------------------  ----------------------------------------
-	p.NewCard(
-		H2("Quick start"),
-		Middle(70,
-			P(`Download and install Go in the $HOME directory.`),
-			Pre(Class("shell dark"),
-				`$ cd $HOME
-$ wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
-$ tar xvfz go1.22.0.linux-amd64.tar.gz
-$ export PATH="$PATH:$HOME/go/bin"
-$ go version
-go version go1.22.0 linux/amd64`,
-			),
-
-			P("For more information refer to ",
-				A(Href("https://go.dev/doc/install"),
-					`"Download and install"`),
-				".",
-			),
-		),
-	)
-
+	introSection(&p)
 	conceptsSection(&p)
 	httpExamples(&p)
 	routeSection(&p)

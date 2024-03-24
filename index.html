@@ -250,6 +250,10 @@ color: red;
 .summary tr td:first-child {
 padding-right: 2em;
 }
+.summary tr th {
+text-align: left;
+border-bottom: 1px solid black;
+}
 </style>
 </head>
 <body>
@@ -260,45 +264,65 @@ padding-right: 2em;
 </table>
 </div>
 </div>
-<div class="footer"><em class="prev">&nbsp;</em><em class="next">&nbsp;</em>1/28</div>
+<div class="footer"><em class="prev">&nbsp;</em><em class="next">&nbsp;</em>1/30</div>
 </div>
 <div class="page" id="2"><div class="view"><div class="header"><h2>Golang; Backend development</h2>
 </div>
 <div class="slide"><div class="toc"><nav><ul>
-<li class="h2"><a href="#3">Quick start</a></li>
-<li class="h2"><a href="#4">Concepts</a></li>
-<li class="h3"><a href="#5">module</a></li>
-<li class="h3"><a href="#6">package</a></li>
-<li class="h3"><a href="#7">interface</a></li>
-<li class="h2"><a href="#8">HTTP</a></li>
-<li class="h3"><a href="#9">direct</a></li>
-<li class="h3"><a href="#10">closure</a></li>
-<li class="h3"><a href="#11">method</a></li>
-<li class="h3"><a href="#12">combo</a></li>
-<li class="h2"><a href="#13">Route</a></li>
-<li class="h3"><a href="#14">naive</a></li>
-<li class="h3"><a href="#15">default http.ServeMux</a></li>
-<li class="h3"><a href="#16">your own http.ServeMux</a></li>
-<li class="h2"><a href="#17">Encode</a></li>
-<li class="h3"><a href="#18">encoding/json</a></li>
-<li class="h3"><a href="#19">nice json</a></li>
-<li class="h3"><a href="#20">field tags</a></li>
-<li class="h2"><a href="#21">Test</a></li>
-<li class="h3"><a href="#22">http/httptest</a></li>
-<li class="h3"><a href="#23">coverage</a></li>
-<li class="h2"><a href="#24">View</a></li>
-<li class="h3"><a href="#25">html/template</a></li>
-<li class="h3"><a href="#26">embed</a></li>
-<li class="h2"><a href="#27">Summary</a></li>
-<li class="h3"><a href="#28">Next time</a></li>
+<li class="h2"><a href="#3">Introduction</a></li>
+<li class="h3"><a href="#4">History</a></li>
+<li class="h3"><a href="#5">Quick install</a></li>
+<li class="h2"><a href="#6">Concepts</a></li>
+<li class="h3"><a href="#7">module</a></li>
+<li class="h3"><a href="#8">package</a></li>
+<li class="h3"><a href="#9">interface</a></li>
+<li class="h2"><a href="#10">HTTP</a></li>
+<li class="h3"><a href="#11">direct</a></li>
+<li class="h3"><a href="#12">closure</a></li>
+<li class="h3"><a href="#13">method</a></li>
+<li class="h3"><a href="#14">combo</a></li>
+<li class="h2"><a href="#15">Route</a></li>
+<li class="h3"><a href="#16">naive</a></li>
+<li class="h3"><a href="#17">default http.ServeMux</a></li>
+<li class="h3"><a href="#18">your own http.ServeMux</a></li>
+<li class="h2"><a href="#19">Encode</a></li>
+<li class="h3"><a href="#20">encoding/json</a></li>
+<li class="h3"><a href="#21">nice json</a></li>
+<li class="h3"><a href="#22">field tags</a></li>
+<li class="h2"><a href="#23">Test</a></li>
+<li class="h3"><a href="#24">http/httptest</a></li>
+<li class="h3"><a href="#25">coverage</a></li>
+<li class="h2"><a href="#26">View</a></li>
+<li class="h3"><a href="#27">html/template</a></li>
+<li class="h3"><a href="#28">embed</a></li>
+<li class="h2"><a href="#29">Summary</a></li>
+<li class="h3"><a href="#30">Next time</a></li>
 </ul>
 </nav>
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&nbsp;</em><em class="next">Quick start &raquo;</em>2/28</div>
+<div class="footer"><em class="prev">&nbsp;</em><em class="next">Introduction &raquo;</em>2/30</div>
 </div>
-<div class="page" id="3"><div class="view"><div class="header"><h2>Quick start</h2>
+<div class="page" id="3"><div class="view"><div class="header"><h2>Introduction</h2>
+</div>
+<div class="slide"><div style="position: absolute; left: 20vw; width: 60vw"><p>The goal of this presentation is to teach you Go
+		    concepts when writing applications serving HTTP
+		    requests.</p>
+</div>
+</div>
+</div>
+<div class="footer"><em class="prev">&laquo; Golang; Backend development</em><em class="next">Introduction History &raquo;</em>3/30</div>
+</div>
+<div class="page" id="4"><div class="view"><div class="header"><div class="group">Introduction</div>
+<h3>History</h3>
+</div>
+<div class="slide"><img src="img/people.png"/></div>
+</div>
+<div class="footer"><em class="prev">&laquo; Introduction</em><em class="next">Introduction Quick install &raquo;</em>4/30</div>
+</div>
+<div class="page" id="5"><div class="view"><div class="header"><div class="group">Introduction</div>
+<h3>Quick install</h3>
 </div>
 <div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><p>Download and install Go in the $HOME directory.</p>
 <pre class="shell dark">$ cd $HOME
@@ -310,9 +334,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Golang; Backend development</em><em class="next">Concepts &raquo;</em>3/28</div>
+<div class="footer"><em class="prev">&laquo; Introduction History</em><em class="next">Concepts &raquo;</em>5/30</div>
 </div>
-<div class="page" id="4"><div class="view"><div class="header"><h2>Concepts</h2>
+<div class="page" id="6"><div class="view"><div class="header"><h2>Concepts</h2>
 </div>
 <div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><p>In Go; <b>modules</b> are used to group
 			<b>packages</b> and functions.</p>
@@ -323,9 +347,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 			  can be used here."<br/><br/><a href="https://go.dev/doc/effective_go#interfaces_and_types">go.dev/doc/effective_go#interfaces_and_types</a></quote></div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Quick start</em><em class="next">Concepts module &raquo;</em>4/28</div>
+<div class="footer"><em class="prev">&laquo; Introduction Quick install</em><em class="next">Concepts module &raquo;</em>6/30</div>
 </div>
-<div class="page" id="5"><div class="view"><div class="header"><div class="group">Concepts</div>
+<div class="page" id="7"><div class="view"><div class="header"><div class="group">Concepts</div>
 <h3>module</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 42vw"><p>Modules are initiated using the repository URL.</p>
@@ -339,9 +363,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Concepts</em><em class="next">Concepts package &raquo;</em>5/28</div>
+<div class="footer"><em class="prev">&laquo; Concepts</em><em class="next">Concepts package &raquo;</em>7/30</div>
 </div>
-<div class="page" id="6"><div class="view"><div class="header"><div class="group">Concepts</div>
+<div class="page" id="8"><div class="view"><div class="header"><div class="group">Concepts</div>
 <h3>package</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 42vw"><div class="srcfile"><code><ol>
@@ -367,9 +391,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Concepts module</em><em class="next">Concepts interface &raquo;</em>6/28</div>
+<div class="footer"><em class="prev">&laquo; Concepts module</em><em class="next">Concepts interface &raquo;</em>8/30</div>
 </div>
-<div class="page" id="7"><div class="view"><div class="header"><div class="group">Concepts</div>
+<div class="page" id="9"><div class="view"><div class="header"><div class="group">Concepts</div>
 <h3>interface</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 42vw"><br/><quote class="small">"Interfaces with only one or two methods are common in Go
@@ -412,9 +436,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Concepts package</em><em class="next">HTTP &raquo;</em>7/28</div>
+<div class="footer"><em class="prev">&laquo; Concepts package</em><em class="next">HTTP &raquo;</em>9/30</div>
 </div>
-<div class="page" id="8"><div class="view"><div class="header"><h2>HTTP</h2>
+<div class="page" id="10"><div class="view"><div class="header"><h2>HTTP</h2>
 </div>
 <div class="slide"><div style="position: absolute; left: 16vw; width: 68vw"><p>Respond to HTTP requests in Go by implementing the
 			http.Handler interface.</p>
@@ -439,9 +463,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Concepts interface</em><em class="next">HTTP direct &raquo;</em>8/28</div>
+<div class="footer"><em class="prev">&laquo; Concepts interface</em><em class="next">HTTP direct &raquo;</em>10/30</div>
 </div>
-<div class="page" id="9"><div class="view"><div class="header"><div class="group">HTTP</div>
+<div class="page" id="11"><div class="view"><div class="header"><div class="group">HTTP</div>
 <h3>direct</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 52vw"><div class="srcfile"><code><ol>
@@ -474,9 +498,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; HTTP</em><em class="next">HTTP closure &raquo;</em>9/28</div>
+<div class="footer"><em class="prev">&laquo; HTTP</em><em class="next">HTTP closure &raquo;</em>11/30</div>
 </div>
-<div class="page" id="10"><div class="view"><div class="header"><div class="group">HTTP</div>
+<div class="page" id="12"><div class="view"><div class="header"><div class="group">HTTP</div>
 <h3>closure</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 52vw"><div class="srcfile"><code><ol>
@@ -510,9 +534,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; HTTP direct</em><em class="next">HTTP method &raquo;</em>10/28</div>
+<div class="footer"><em class="prev">&laquo; HTTP direct</em><em class="next">HTTP method &raquo;</em>12/30</div>
 </div>
-<div class="page" id="11"><div class="view"><div class="header"><div class="group">HTTP</div>
+<div class="page" id="13"><div class="view"><div class="header"><div class="group">HTTP</div>
 <h3>method</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 52vw"><div class="srcfile"><code><ol>
@@ -545,9 +569,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; HTTP closure</em><em class="next">HTTP combo &raquo;</em>11/28</div>
+<div class="footer"><em class="prev">&laquo; HTTP closure</em><em class="next">HTTP combo &raquo;</em>13/30</div>
 </div>
-<div class="page" id="12"><div class="view"><div class="header"><div class="group">HTTP</div>
+<div class="page" id="14"><div class="view"><div class="header"><div class="group">HTTP</div>
 <h3>combo</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 47vw"><span class="small"><div class="srcfile"><code><ol>
@@ -583,9 +607,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; HTTP method</em><em class="next">Route &raquo;</em>12/28</div>
+<div class="footer"><em class="prev">&laquo; HTTP method</em><em class="next">Route &raquo;</em>14/30</div>
 </div>
-<div class="page" id="13"><div class="view"><div class="header"><h2>Route</h2>
+<div class="page" id="15"><div class="view"><div class="header"><h2>Route</h2>
 </div>
 <div class="slide"><div style="position: absolute; left: 16vw; width: 68vw"><p>For systems serving many resources</p>
 <div class="srcfile"><code><ol>
@@ -604,9 +628,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </pre></div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; HTTP combo</em><em class="next">Route naive &raquo;</em>13/28</div>
+<div class="footer"><em class="prev">&laquo; HTTP combo</em><em class="next">Route naive &raquo;</em>15/30</div>
 </div>
-<div class="page" id="14"><div class="view"><div class="header"><div class="group">Route</div>
+<div class="page" id="16"><div class="view"><div class="header"><div class="group">Route</div>
 <h3>naive</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 55vw"><div class="srcfile"><code><ol start="16">
@@ -632,9 +656,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Route</em><em class="next">Route default http.ServeMux &raquo;</em>14/28</div>
+<div class="footer"><em class="prev">&laquo; Route</em><em class="next">Route default http.ServeMux &raquo;</em>16/30</div>
 </div>
-<div class="page" id="15"><div class="view"><div class="header"><div class="group">Route</div>
+<div class="page" id="17"><div class="view"><div class="header"><div class="group">Route</div>
 <h3>default http.ServeMux</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 62vw"><div class="srcfile"><code><ol start="9">
@@ -664,9 +688,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Route naive</em><em class="next">Route your own http.ServeMux &raquo;</em>15/28</div>
+<div class="footer"><em class="prev">&laquo; Route naive</em><em class="next">Route your own http.ServeMux &raquo;</em>17/30</div>
 </div>
-<div class="page" id="16"><div class="view"><div class="header"><div class="group">Route</div>
+<div class="page" id="18"><div class="view"><div class="header"><div class="group">Route</div>
 <h3>your own http.ServeMux</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 62vw"><div class="srcfile"><code><ol start="9">
@@ -699,9 +723,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Route default http.ServeMux</em><em class="next">Encode &raquo;</em>16/28</div>
+<div class="footer"><em class="prev">&laquo; Route default http.ServeMux</em><em class="next">Encode &raquo;</em>18/30</div>
 </div>
-<div class="page" id="17"><div class="view"><div class="header"><h2>Encode</h2>
+<div class="page" id="19"><div class="view"><div class="header"><h2>Encode</h2>
 </div>
 <div class="slide"><div style="position: absolute; left: 20vw; width: 60vw"><p>From the dictionary</p>
 <pre>encode
@@ -712,9 +736,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Route your own http.ServeMux</em><em class="next">Encode encoding/json &raquo;</em>17/28</div>
+<div class="footer"><em class="prev">&laquo; Route your own http.ServeMux</em><em class="next">Encode encoding/json &raquo;</em>19/30</div>
 </div>
-<div class="page" id="18"><div class="view"><div class="header"><div class="group">Encode</div>
+<div class="page" id="20"><div class="view"><div class="header"><div class="group">Encode</div>
 <h3>encoding/json</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 52vw"><div class="srcfile"><code><ol>
@@ -745,9 +769,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Encode</em><em class="next">Encode nice json &raquo;</em>18/28</div>
+<div class="footer"><em class="prev">&laquo; Encode</em><em class="next">Encode nice json &raquo;</em>20/30</div>
 </div>
-<div class="page" id="19"><div class="view"><div class="header"><div class="group">Encode</div>
+<div class="page" id="21"><div class="view"><div class="header"><div class="group">Encode</div>
 <h3>nice json</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 52vw"><div class="srcfile"><code><ol>
@@ -781,9 +805,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Encode encoding/json</em><em class="next">Encode field tags &raquo;</em>19/28</div>
+<div class="footer"><em class="prev">&laquo; Encode encoding/json</em><em class="next">Encode field tags &raquo;</em>21/30</div>
 </div>
-<div class="page" id="20"><div class="view"><div class="header"><div class="group">Encode</div>
+<div class="page" id="22"><div class="view"><div class="header"><div class="group">Encode</div>
 <h3>field tags</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 52vw"><div class="srcfile"><code><ol>
@@ -818,9 +842,9 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Encode nice json</em><em class="next">Test &raquo;</em>20/28</div>
+<div class="footer"><em class="prev">&laquo; Encode nice json</em><em class="next">Test &raquo;</em>22/30</div>
 </div>
-<div class="page" id="21"><div class="view"><div class="header"><h2>Test</h2>
+<div class="page" id="23"><div class="view"><div class="header"><h2>Test</h2>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 42vw"><div class="filename">main_test.go</div>
 <div class="srcfile"><code><ol>
@@ -857,9 +881,9 @@ ok  	github.com/gregoryv/project	0.001s
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Encode field tags</em><em class="next">Test http/httptest &raquo;</em>21/28</div>
+<div class="footer"><em class="prev">&laquo; Encode field tags</em><em class="next">Test http/httptest &raquo;</em>23/30</div>
 </div>
-<div class="page" id="22"><div class="view"><div class="header"><div class="group">Test</div>
+<div class="page" id="24"><div class="view"><div class="header"><div class="group">Test</div>
 <h3>http/httptest</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 52vw"><div class="srcfile"><code><ol>
@@ -894,9 +918,9 @@ ok  	github.com/gregoryv/project	0.001s
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Test</em><em class="next">Test coverage &raquo;</em>22/28</div>
+<div class="footer"><em class="prev">&laquo; Test</em><em class="next">Test coverage &raquo;</em>24/30</div>
 </div>
-<div class="page" id="23"><div class="view"><div class="header"><div class="group">Test</div>
+<div class="page" id="25"><div class="view"><div class="header"><div class="group">Test</div>
 <h3>coverage</h3>
 </div>
 <div class="slide"><pre class="shell dark">$ go test -v -cover .<br/>=== RUN   Test_sayHello
@@ -945,9 +969,9 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Test http/httptest</em><em class="next">View &raquo;</em>23/28</div>
+<div class="footer"><em class="prev">&laquo; Test http/httptest</em><em class="next">View &raquo;</em>25/30</div>
 </div>
-<div class="page" id="24"><div class="view"><div class="header"><h2>View</h2>
+<div class="page" id="26"><div class="view"><div class="header"><h2>View</h2>
 </div>
 <div class="slide"><div style="position: absolute; left: 20vw; width: 60vw"><p>Serverside rendered HTML for several use cases</p>
 <ul>
@@ -959,9 +983,9 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; Test coverage</em><em class="next">View html/template &raquo;</em>24/28</div>
+<div class="footer"><em class="prev">&laquo; Test coverage</em><em class="next">View html/template &raquo;</em>26/30</div>
 </div>
-<div class="page" id="25"><div class="view"><div class="header"><div class="group">View</div>
+<div class="page" id="27"><div class="view"><div class="header"><div class="group">View</div>
 <h3>html/template</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 44vw"><div class="srcfile"><code><ol>
@@ -1010,9 +1034,9 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; View</em><em class="next">View embed &raquo;</em>25/28</div>
+<div class="footer"><em class="prev">&laquo; View</em><em class="next">View embed &raquo;</em>27/30</div>
 </div>
-<div class="page" id="26"><div class="view"><div class="header"><div class="group">View</div>
+<div class="page" id="28"><div class="view"><div class="header"><div class="group">View</div>
 <h3>embed</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 52vw"><div class="srcfile"><code><ol>
@@ -1037,13 +1061,17 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 </div>
 </div>
 </div>
-<div class="footer"><em class="prev">&laquo; View html/template</em><em class="next">Summary &raquo;</em>26/28</div>
+<div class="footer"><em class="prev">&laquo; View html/template</em><em class="next">Summary &raquo;</em>28/30</div>
 </div>
-<div class="page" id="27"><div class="view"><div class="header"><h2>Summary</h2>
+<div class="page" id="29"><div class="view"><div class="header"><h2>Summary</h2>
 </div>
-<div class="slide"><div class="double"><div class="column left" style="width: 62vw"><p>Key knowledge areas shared in this presentation</p>
+<div class="slide"><div style="position: absolute; left: 15vw; width: 70vw"><p>Concepts covered in this presentation</p>
 <table class="summary">
-<tr><th>Package</th></tr>
+<tr><th colspan="2">Go language/structure</th></tr>
+<tr><td>module</td><td>for dependency management</td></tr>
+<tr><td>package</td><td>grouping related code</td></tr>
+<tr><td>interface</td><td>behaviour abstraction</td></tr>
+<tr><th colspan="2"><br/>Package</th></tr>
 <tr><td>net/http</td><td>handling requests and routing</td></tr>
 <tr><td>net/http/httptest</td><td>utilities for HTTP testing</td></tr>
 <tr><td>testing</td><td>automated testing of Go packages</td></tr>
@@ -1051,15 +1079,11 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <tr><td>embed</td><td>provides access to embedded files</td></tr>
 </table>
 </div>
-<div class="column right" style="left: 70vw; width: 30vw"><h4>Concepts</h4>
-<p>Design variations related to request handling</p>
 </div>
 </div>
+<div class="footer"><em class="prev">&laquo; View embed</em><em class="next">Summary Next time &raquo;</em>29/30</div>
 </div>
-</div>
-<div class="footer"><em class="prev">&laquo; View embed</em><em class="next">Summary Next time &raquo;</em>27/28</div>
-</div>
-<div class="page" id="28"><div class="view"><div class="header"><div class="group">Summary</div>
+<div class="page" id="30"><div class="view"><div class="header"><div class="group">Summary</div>
 <h3>Next time</h3>
 </div>
 <div class="slide"><pre>
@@ -1072,7 +1096,7 @@ Error handling
 
 </pre></div>
 </div>
-<div class="footer"><em class="prev">&laquo; Summary</em><em class="next">&nbsp;</em>28/28</div>
+<div class="footer"><em class="prev">&laquo; Summary</em><em class="next">&nbsp;</em>30/30</div>
 </div>
 </body>
 <script>document.addEventListener('keydown', function(event) {
