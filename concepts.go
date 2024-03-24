@@ -28,7 +28,7 @@ func conceptsSection(p *Deck) {
 		H3("module"),
 		TwoCol(
 			Wrap(
-				P(`Modules are initiated using the reposity URL.`),
+				P(`Modules are initiated using the repository URL.`),
 				Pre(Class("shell dark"),
 					"$ go mod init github.com/gregoryv/uptime",
 				),
