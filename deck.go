@@ -208,7 +208,7 @@ func (p *Deck) Document() *Page {
 				),
 				Tr(
 					Td(
-						"by", Br(), p.Author,
+						Br(), p.Author,
 					),
 				),
 			),

@@ -9,7 +9,7 @@ import (
 
 func main() {
 	p := Deck{
-		Title:     "Go; Backend development #1",
+		Title:     "#1 Backend development",
 		Author:    "Gregory Vinčić",
 		AutoCover: true,
 		cover:     Img(Src("img/coverpage.png")),
