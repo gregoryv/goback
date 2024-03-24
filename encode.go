@@ -47,4 +47,14 @@ func encodeSection(p *Deck) {
 			40,
 		),
 	)
+	p.NewCard(
+		H3("Complex struct"),
+		TwoCol(
+			LoadLines("examples/complex_struct.go", 20, -1),
+			Wrap(
+				Shell("$ go run ./examples/complex_struct.go", "./examples/complex_struct.json"),
+			),
+			38,
+		),
+	)
 }
