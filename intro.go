@@ -11,6 +11,8 @@ func introSection(p *Deck) {
 			P(`The goal of this presentation is to teach you Go
 		    concepts when writing programs serving HTTP
 		    requests.`),
+
+			P(`You will be learn about packages involved and their purpose.`),
 		),
 	)
 	p.Style(".narrow",
