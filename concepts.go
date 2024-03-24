@@ -45,7 +45,7 @@ func conceptsSection(p *Deck) {
 				P(`Sharing code with others requires dependency
 				management.`),
 
-				pictogram("pic_module.png", "Pictogram of a Go module"),
+				pictogram("pic_module.png", "Module"),
 			),
 			50,
 		),
@@ -69,7 +69,7 @@ func conceptsSection(p *Deck) {
 
 					"https://go.dev/doc/effective_go#package-names",
 				),
-				pictogram("pic_package.png", "Pictogram of a Go package"),
+				pictogram("pic_package.png", "Package"),
 			),
 			50,
 		),
@@ -90,7 +90,7 @@ func conceptsSection(p *Deck) {
 				).With(Class("small")),
 
 				Load("examples/stringer.go"),
-				pictogram("pic_interface.png", "Pictogram of a Go interface"),
+				pictogram("pic_interface.png", "Interface"),
 			),
 			LoadLines("examples/interface.go", 7, -1),
 			50,
