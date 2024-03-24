@@ -82,7 +82,7 @@ position: absolute;
 height: 6px;
 width: 6px;
 border-radius: 3px;
-background: teal;
+background: red;
 }
 .outline {
 border: 1px solid black;
@@ -117,7 +117,7 @@ font-size: 2vh;
 .srcfile code {
 margin-left: 0px;
 padding-right: 20px;
-padding: .6em 0 0 0;
+padding: 0 0 0 0;
 background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAlCAMAAAB1cTk3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAjVBMVEX9/fz4+Pb19fP8/Pz39/Xp6ejr6+rs7Ov29vTt7evo6Oj6+vr7+/vv7+/u7u3v7+37+/ru7uzw8PD////29vbx8fD6+vjq6unz8/L5+ff39/f9/f3y8vHo6Ofx8fHw8O/z8/P6+vn4+Pj09PL+/v729vXp6efy8vDv7+709PTz8/H7+/n8/Pv5+fju7u5JBELWAAAAAWJLR0QB/wIt3gAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+cFHw8tIWAQRK8AAAC5SURBVCjPpZDbEoIgEIaXQLPUNNFOWJrRyQ7v/3gJAs2EFzTuBex+8+/uDwDIiglgGyItJJ4/9YM+DxSczcMowvFCFgmk4lpmVEZeiGolYbCmKjZiQgp4i5C305CVPezOPTVxMLD6wrorj79K0U6kpaQxM0/GPIm5gmdilKise9ZI4UW96HoLGcN3ybpF+hPaomxV+oCn/Ukv4DZMgdqQOkMMb0clG4L5uO3/wAGf3Ll9UJk5Lxpr/gOpxRF8cA+lxgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wNS0zMVQxMzo0NTozMyswMjowMJXHbJYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDUtMzFUMTM6NDU6MzMrMDI6MDDkmtQqAAAAAElFTkSuQmCC);
 background-repeat: repeat-y;
 background-position: right top;
@@ -226,7 +226,7 @@ font-size: 0.9vw;
 .small .filename {
 margin-bottom: -1.5em;
 }
-.right .srcfile, .right .shell, .right p {
+.right>* {
 margin-right: 1em;
 }
 .stop>img {
@@ -656,8 +656,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <div class="page" id="16"><div class="view"><div class="header"><div class="group">Route</div>
 <h3>your own http.ServeMux</h3>
 </div>
-<div class="slide"><div class="double"><div class="column left" style="width: 62vw"><ul class="srcfile">
-<code><ol>
+<div class="slide"><div class="double"><div class="column left" style="width: 62vw"><div class="srcfile"><code><ol start="9">
 <li><span class="keyword">func</span> main() {</li>
 <li>    <span class="keyword">var</span> ctl Controller</li>
 <li></li>
@@ -669,8 +668,18 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>        log.Fatal(err)</li>
 <li>    }</li>
 <li>}</li>
+<li></li>
+<li><span class="keyword">type</span> Controller <span class="keyword">struct</span>{}</li>
+<li></li>
+<li><span class="keyword">func</span> (c *Controller) sayHello(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    fmt.Fprint(w, "Hello, world!")</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">func</span> (c *Controller) sayGoodbye(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    fmt.Fprint(w, "Goodbye, world!")</li>
+<li>}</li>
 </ol>
-</code></ul>
+</code></div>
 </div>
 <div class="column right" style="left: 70vw; width: 30vw"><p>Create your own http.ServeMux.</p>
 </div>
@@ -877,7 +886,12 @@ ok  	github.com/gregoryv/project	0.001s
 <div class="page" id="23"><div class="view"><div class="header"><div class="group">Test</div>
 <h3>coverage</h3>
 </div>
-<div class="slide"><div class="small"><div class="double"><div class="column left" style="width: 42vw"><div class="filename">main_test.go</div>
+<div class="slide"><pre class="shell dark">$ go test -v -cover .<br/>=== RUN   Test_sayHello
+--- PASS: Test_sayHello (0.00s)
+PASS
+coverage: 60.0% of statements
+ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
+</pre><div class="small"><div class="double"><div class="column left" style="width: 42vw"><div class="filename">main_test.go</div>
 <div class="srcfile"><code><ol start="9">
 <li><span class="keyword">func</span> Test_sayHello(t *<span class="type">testing.T</span>) {</li>
 <li>    <span class="comment">// prepare response recorder and request</span></li>
@@ -896,7 +910,8 @@ ok  	github.com/gregoryv/project	0.001s
 <li>}</li>
 </ol>
 </code></div>
-<div class="filename">main.go</div>
+</div>
+<div class="column right" style="left: 50vw; width: 50vw"><div class="filename">main.go</div>
 <div class="srcfile"><code><ol start="9">
 <li><span class="keyword">func</span> main() {</li>
 <li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", sayHello()); err != nil {</li>
@@ -913,12 +928,6 @@ ok  	github.com/gregoryv/project	0.001s
 </ol>
 </code></div>
 </div>
-<div class="column right" style="left: 50vw; width: 50vw"><pre class="shell dark">$ go test -v -cover .<br/>=== RUN   Test_sayHello
---- PASS: Test_sayHello (0.00s)
-PASS
-coverage: 60.0% of statements
-ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
-</pre></div>
 </div>
 </div>
 </div>

@@ -43,7 +43,7 @@ func routeSection(p *Deck) {
 	p.NewCard(
 		H3("your own http.ServeMux"),
 		TwoCol(
-			LoadFunc("examples/own_mux.go", "main"),
+			LoadLines("examples/own_mux.go", 9, -1),
 			P(`Create your own http.ServeMux.`),
 			30, // right column width
 		),

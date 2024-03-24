@@ -120,11 +120,10 @@ func (p *Deck) CSS() *CSS {
 		"height: 6px",
 		"width: 6px",
 		"border-radius: 3px",
-		"background: teal",
+		"background: red",
 	)
 
 	css = css.With(layoutView())
-
 	css = css.With(srcfile(fontSize))
 	css = css.With(highlightColors())
 	if p.user != nil {
@@ -288,17 +287,6 @@ func Load(filename string) *Element {
 	)
 }
 
-func LoadFunc(filename, funcName string) *Element {
-	v := files.MustLoadFunc(filename, funcName)
-	v = strings.TrimSpace(v)
-	v = strings.ReplaceAll(v, "\t", "    ")
-	v = highlight(v)
-	return Ul(
-		Class("srcfile"),
-		Code(numLines(v, 1)),
-	)
-}
-
 func LoadLines(filename string, from, to int) *Element {
 	v := files.MustLoadLines(filename, from, to)
 	v = strings.TrimSpace(v)
@@ -397,7 +385,7 @@ func srcfile(fontSize int) *CSS {
 	css.Style(".srcfile code",
 		"margin-left: 0px",
 		"padding-right: 20px", // match the background size of holes
-		"padding: .6em 0 0 0",
+		"padding: 0 0 0 0",
 		"background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAlCAMAAAB1cTk3AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAjVBMVEX9/fz4+Pb19fP8/Pz39/Xp6ejr6+rs7Ov29vTt7evo6Oj6+vr7+/vv7+/u7u3v7+37+/ru7uzw8PD////29vbx8fD6+vjq6unz8/L5+ff39/f9/f3y8vHo6Ofx8fHw8O/z8/P6+vn4+Pj09PL+/v729vXp6efy8vDv7+709PTz8/H7+/n8/Pv5+fju7u5JBELWAAAAAWJLR0QB/wIt3gAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+cFHw8tIWAQRK8AAAC5SURBVCjPpZDbEoIgEIaXQLPUNNFOWJrRyQ7v/3gJAs2EFzTuBex+8+/uDwDIiglgGyItJJ4/9YM+DxSczcMowvFCFgmk4lpmVEZeiGolYbCmKjZiQgp4i5C305CVPezOPTVxMLD6wrorj79K0U6kpaQxM0/GPIm5gmdilKise9ZI4UW96HoLGcN3ybpF+hPaomxV+oCn/Ukv4DZMgdqQOkMMb0clG4L5uO3/wAGf3Ll9UJk5Lxpr/gOpxRF8cA+lxgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wNS0zMVQxMzo0NTozMyswMjowMJXHbJYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDUtMzFUMTM6NDU6MzMrMDI6MDDkmtQqAAAAAElFTkSuQmCC)",
 		"background-repeat: repeat-y",
 		"background-position: right top",

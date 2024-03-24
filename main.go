@@ -90,7 +90,7 @@ func main() {
 	p.Style(".small .filename",
 		"margin-bottom: -1.5em",
 	)
-	p.Style(".right .srcfile, .right .shell, .right p",
+	p.Style(".right>*",
 		"margin-right: 1em",
 	)
 	p.Style(".stop>img",
