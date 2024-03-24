@@ -15,6 +15,6 @@ func main() {
 }
 
 type Contact struct {
-	Firstname string `json:"firstname"`
-	Lastname  string `json:"lastname"`
+	Firstname string `json:"firstname"` // change name
+	Lastname  string `json:"-"`         // ignore this field
 }
