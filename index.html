@@ -1010,7 +1010,27 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <div class="page" id="26"><div class="view"><div class="header"><div class="group">View</div>
 <h3>embed</h3>
 </div>
-<div class="slide"></div>
+<div class="slide"><div class="double"><div class="column left" style="width: 52vw"><div class="srcfile"><code><ol>
+<li><span class="keyword">package</span> main</li>
+<li></li>
+<li><span class="keyword">import</span> (</li>
+<li>    _ &#34;embed&#34; <span class="comment">// used at compile time</span></li>
+<li>    &#34;fmt&#34;</li>
+<li>)</li>
+<li></li>
+<li><span class="keyword">func</span> main() {</li>
+<li>    fmt.Print(index)</li>
+<li>}</li>
+<li></li>
+<li><span class="comment">//<span class="keyword">go</span>:embed <span class="type">index.html</span></span></li>
+<li><span class="keyword">var</span> index string</li>
+</ol>
+</code></div>
+</div>
+<div class="column right" style="left: 60vw; width: 40vw"><p><quote>"Package embed provides access to files embedded in the running Go program."<br/><br/><a href="https://pkg.go.dev/embed">pkg.go.dev/embed</a></quote></p>
+</div>
+</div>
+</div>
 </div>
 <div class="footer"><em class="prev">&laquo; View html/template</em><em class="next">Next time &raquo;</em>26/27</div>
 </div>

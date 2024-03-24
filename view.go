@@ -29,6 +29,18 @@ func viewSection(p *Deck) {
 	)
 	p.NewCard(
 		H3("embed"),
+
+		TwoCol(
+			LoadEscaped("examples/embed.go"),
+			
+			P(
+				quote(
+				"Package embed provides access to files embedded in the running Go program.",
+				"https://pkg.go.dev/embed",
+				),
+			),
+			40,
+		),
 	)
 	// wip here
 }
