@@ -16,6 +16,11 @@ func introSection(p *Deck) {
 	p.NewCard(
 		H3("History"),
 		Img(Src("img/people.png")),
+
+		P(`Robert Griesemer, Rob Pike and Ken Thompson are the
+		original authors of the Go language which is currently
+		supervised by Russ Cox. Ian wrote the first compiler for the
+		Go language as a frontend to gcc.`),
 	)
 	p.NewCard(
 		H3("Quick install"),

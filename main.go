@@ -9,9 +9,10 @@ import (
 
 func main() {
 	p := Deck{
-		Title:     "Golang; Backend development",
+		Title:     "Go; Backend development",
 		Author:    "Gregory Vinčić",
 		AutoCover: true,
+		cover:     Img(Src("img/coverpage.png")),
 		AutoTOC:   true,
 	}
 	// dark mode
@@ -106,6 +107,7 @@ func main() {
 	)
 	// wip style
 	// ----------------------------------------  ----------------------------------------
+
 	introSection(&p)
 	conceptsSection(&p)
 	httpExamples(&p)

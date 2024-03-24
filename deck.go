@@ -183,28 +183,34 @@ func (p *Deck) Document() *Page {
 	var cards []*Element
 
 	// create cover page if not set
-	cover := p.cover
-	if cover == nil && p.AutoCover {
-		cover = Wrap(
-			Div(Class("cover"),
-				Table(
-					Tr(
-						Td(
-							H1(p.Title),
-						),
+	cover := Wrap(
+		Div(Class("cover"),
+			Table(
+				Tr(
+					Td(
+						H1(p.Title),
 					),
-					Tr(
-						Td(
-							p.Author,
-						),
+				),
+				Tr(
+					Td(
+						func() *Element {
+							if p.cover == nil {
+								return Wrap()
+							}
+							return p.cover
+						}(),
+					),
+				),
+				Tr(
+					Td(
+						"by", Br(), p.Author,
 					),
 				),
 			),
-		)
-	}
-	if cover != nil {
-		cards = append(cards, cover)
-	}
+		),
+	)
+
+	cards = append(cards, cover)
 
 	// table of deck
 	toc := p.toc
