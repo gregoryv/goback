@@ -4,7 +4,7 @@ import . "github.com/gregoryv/web"
 
 func introSection(p *Deck) {
 	p.NewCard(
-		H2("Introduction"),
+		H2("Goal"),
 
 		Middle(60,
 
@@ -13,14 +13,20 @@ func introSection(p *Deck) {
 		    requests.`),
 		),
 	)
+	p.Style(".narrow",
+		"display: block",
+		"margin: auto auto",
+		"width: 70%",
+	)
 	p.NewCard(
-		H3("History"),
+		H2("History"),
 
-		P(`Robert Griesemer, Rob Pike and Ken Thompson are the
+		Div(Class("narrow"),
+			P(`Robert Griesemer, Ken Thompson and Rob Pike are the
 		original authors of the Go language which is currently
 		supervised by Russ Cox. Ian wrote the first compiler as a
 		frontend to gcc.`),
-
+		),
 		TwoCol(
 			Center(Div(Class("small"),
 				Pre(`The story
@@ -37,9 +43,8 @@ func introSection(p *Deck) {
                  \     /                                          /
                   +---+----------+         o-- Ada 95            /
                   |               \                             /
-              Pascal               +----                    ---+
-                                 Oberon
-	`),
+              Pascal               +---- Oberon             ---+
+`),
 			),
 			),
 
@@ -52,7 +57,7 @@ func introSection(p *Deck) {
 		),
 	)
 	p.NewCard(
-		H3("Quick install"),
+		H2("Quick install"),
 		Middle(70,
 			P(`Download and install Go in the $HOME directory.`),
 			Pre(Class("shell dark"),
