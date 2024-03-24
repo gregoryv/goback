@@ -20,6 +20,10 @@ func main() {
 		"border-bottom: 1px inset #000",
 	)
 	p.Style(".page .footer", "bottom: 1vh") // slightly up
+	p.Style(".right>*",
+		"margin-right: 1em",
+	)
+
 	// center toc if short titles
 	// p.Style(".toc", "margin-left: 10vw", "width: 20vw")
 	p.Style(".shell",
@@ -60,6 +64,7 @@ func main() {
 	)
 
 	p.Style(".pictogram",
+		"display: block",
 		"width: 400px",
 		"text-align: center",
 		"padding: 1em 1em",
@@ -89,9 +94,6 @@ func main() {
 	)
 	p.Style(".small .filename",
 		"margin-bottom: -1.5em",
-	)
-	p.Style(".right>*",
-		"margin-right: 1em",
 	)
 	p.Style(".stop>img",
 		"text-align: center",

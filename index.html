@@ -168,6 +168,9 @@ border-bottom: 1px inset #000;
 .page .footer {
 bottom: 1vh;
 }
+.right>* {
+margin-right: 1em;
+}
 .shell {
 padding: 1em;
 border-radius: 10px;
@@ -205,6 +208,7 @@ quote.small {
 font-size: 1vw;
 }
 .pictogram {
+display: block;
 width: 400px;
 text-align: center;
 padding: 1em 1em;
@@ -233,9 +237,6 @@ font-size: 0.9vw;
 }
 .small .filename {
 margin-bottom: -1.5em;
-}
-.right>* {
-margin-right: 1em;
 }
 .stop>img {
 text-align: center;
@@ -389,6 +390,10 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>    fmt.Println(painted(color(2)))</li>
 <li>}</li>
 <li></li>
+<li><span class="keyword">func</span> painted(value <span class="type">fmt.Stringer</span>) string {</li>
+<li>    <span class="keyword">return</span> fmt.Sprintf("Painted: %s", value.String())</li>
+<li>}</li>
+<li></li>
 <li><span class="keyword">type</span> color int</li>
 <li></li>
 <li><span class="keyword">func</span> (c color) String() string {</li>
@@ -400,10 +405,6 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>    <span class="keyword">default</span>:</li>
 <li>        <span class="keyword">return</span> "white"</li>
 <li>    }</li>
-<li>}</li>
-<li></li>
-<li><span class="keyword">func</span> painted(value <span class="type">fmt.Stringer</span>) string {</li>
-<li>    <span class="keyword">return</span> fmt.Sprintf("Painted: %s", value.String())</li>
 <li>}</li>
 </ol>
 </code></div>
