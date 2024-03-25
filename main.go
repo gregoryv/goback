@@ -26,7 +26,9 @@ func main() {
 	)
 
 	// center toc if short titles
-	// p.Style(".toc", "margin-left: 10vw", "width: 20vw")
+	p.Style(".toc",
+		"font-size: 0.9em",
+	)
 	p.Style(".shell",
 		"padding: 1em",
 		"border-radius: 10px",
