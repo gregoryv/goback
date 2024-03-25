@@ -37,7 +37,6 @@ func endSection(p *Deck) {
 			),
 		),
 	)
-	// wip here
 
 	p.Style(".summary tr td:first-child",
 		"padding-right: 2em",
