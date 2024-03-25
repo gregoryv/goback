@@ -85,7 +85,7 @@ func (p *Deck) CSS() *CSS {
 		"overflow: hidden",
 	)
 	css.Style(".header",
-		"background-image: url('img/gopher.png')",
+		"background-image: url('img/blue_gopher.svg')",
 		"background-repeat: no-repeat",
 		"background-position: 80px 10px",
 	)

@@ -40,7 +40,6 @@ func finallySection(p *Deck) {
 	p.Style(".course",
 		"font-size: 1em",
 		"width: 80%",
-		"height: 90px",
 		"border: 5px double black",
 		"padding: 1em 1em",
 		"text-align: center",
@@ -52,17 +51,20 @@ func finallySection(p *Deck) {
 	p.Style(".maybe",
 		"color: #e2e2e2",
 	)
+		p.Style(".later",
+		"border: 5px dashed #e2e2e2",
+	)
 	p.NewCard(
 		H3("Next time"),
 		Br(),
 		Table(Class("courses"),
 			Tr(
 				Td(
-					Div(Class("course done"), "#1<br>Backend development"),
+					Div(Class("course done"), "Backend development"),
 				),
 
 				Td(
-					Div(Class("course"), "#2<br>General problems"),
+					Div(Class("course"), "General problems"),
 					Ol(
 						Li("Test driven development"),
 						Li("Package testdata"),
@@ -73,7 +75,7 @@ func finallySection(p *Deck) {
 					),
 				),
 				Td(
-					Div(Class("course"), Em("#3<br>Concurrency problems")),
+					Div(Class("course later"), Em("Concurrency problems")),
 					Ol(Class("maybe"),
 						Li("Concurrency"),
 						Li("Benchmark"),
