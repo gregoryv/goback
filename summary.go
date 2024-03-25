@@ -3,6 +3,33 @@ package main
 import . "github.com/gregoryv/web"
 
 func endSection(p *Deck) {
+	p.Style(".f",
+		"float: left",
+		"margin-right: 1em",
+	)
+	p.Style(".f>.srcfile",
+		"font-size: 18px",
+	)
+	p.Style(".f>.filename",
+		"margin-bottom: -20px",
+	)
+
+	p.NewCard(
+		H2("Complete example"),
+		Div(Class("f"),
+			Br(),
+			Img(Src("img/neon_design.svg")),
+		),
+		Div(Class("f"),
+			Div(Class("filename"), "main.go"),
+			LoadLines("examples/neon/main.go", 9, 37),
+		),
+		Div(Class("f"),
+			Div(Class("filename"), "main.go (continued)"),
+			LoadLines("examples/neon/main.go", 39, -1),
+		),
+	)
+
 	p.Style(".summary tr td:first-child",
 		"padding-right: 2em",
 	)
