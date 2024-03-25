@@ -409,13 +409,13 @@ func highlight(v string) string {
 // highlightGoDoc output
 func highlightGoDoc(v string) string {
 	v = docKeywords.ReplaceAllString(v, `$1<span class="keyword">$2</span>$3`)
-	v = types.ReplaceAllString(v, `$1<span class="type">$2</span>$3`)
+	// v = types.ReplaceAllString(v, `$1<span class="type">$2</span>$3`)
 	v = comments.ReplaceAllString(v, `<span class="comment">$1</span>`)
 	return v
 }
 
 var (
-	types       = regexp.MustCompile(`(\W)(\w+\.\w+)(\)|\n)`)
+	types       = regexp.MustCompile(`(\W|\s)(http\.ResponseWriter|http\.Request)(\)|\n|,| \{)`)
 	keywords    = regexp.MustCompile(`(\W?)(^package|const|select|defer|import|for|func|range|return|go|var|switch|if|else|case|label|type|struct|interface|default|fallthrough)(\W)`)
 	docKeywords = regexp.MustCompile(`(\W?)(^package|func|type|struct|interface)(\W)`)
 	comments    = regexp.MustCompile(`(//[^\n]*)`)

@@ -495,7 +495,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>    fmt.Println(painted(color(2)))</li>
 <li>}</li>
 <li></li>
-<li><span class="keyword">func</span> painted(value <span class="type">fmt.Stringer</span>) string {</li>
+<li><span class="keyword">func</span> painted(value fmt.Stringer) string {</li>
 <li>    <span class="keyword">return</span> fmt.Sprintf("Painted: %s", value.String())</li>
 <li>}</li>
 <li></li>
@@ -565,7 +565,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>    }</li>
 <li>}</li>
 <li></li>
-<li><span class="keyword">func</span> sayHello(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li><span class="keyword">func</span> sayHello(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>    fmt.Fprint(w, "Hello, world!")</li>
 <li>}</li>
 </ol>
@@ -601,7 +601,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li></li>
 <li><span class="keyword">func</span> sayHello() http.HandlerFunc {</li>
 <li>    txt := "Hello, world!"</li>
-<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>        fmt.Fprint(w, txt)</li>
 <li>    }</li>
 <li>}</li>
@@ -637,7 +637,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li></li>
 <li><span class="keyword">type</span> Greeter <span class="keyword">struct</span>{}</li>
 <li></li>
-<li><span class="keyword">func</span> (g *Greeter) ServeHTTP(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li><span class="keyword">func</span> (g *Greeter) ServeHTTP(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>    fmt.Fprint(w, "Hello, world!")</li>
 <li>}</li>
 </ol>
@@ -675,7 +675,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li><span class="keyword">type</span> Controller <span class="keyword">struct</span>{}</li>
 <li></li>
 <li><span class="keyword">func</span> (c *Controller) sayHello() http.HandlerFunc {</li>
-<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>        fmt.Fprint(w, "Hello, world!")</li>
 <li>    }</li>
 <li>}</li>
@@ -716,7 +716,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <h3>Naive</h3>
 </div>
 <div class="slide"><div class="double"><div class="column left" style="width: 55vw"><div class="srcfile"><code><ol start="16">
-<li><span class="keyword">func</span> (c *Controller) ServeHTTP(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li><span class="keyword">func</span> (c *Controller) ServeHTTP(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>    <span class="keyword">switch</span> {</li>
 <li>    <span class="keyword">case</span> r.URL.Path == "/" && r.Method == "GET":</li>
 <li>        c.sayHello(w, r)</li>
@@ -725,7 +725,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>        c.sayGoodbye(w, r)</li>
 <li></li>
 <li>    <span class="keyword">default</span>:</li>
-<li>        http.Error(w, "routing failed", <span class="type">http.StatusBadRequest</span>)</li>
+<li>        http.Error(w, "routing failed", http.StatusBadRequest)</li>
 <li>    }</li>
 <li>}</li>
 </ol>
@@ -746,8 +746,8 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <div class="slide"><div class="double"><div class="column left" style="width: 57vw"><div class="srcfile"><code><ol start="9">
 <li><span class="keyword">func</span> main() {</li>
 <li>    <span class="keyword">var</span> ctl Controller</li>
-<li>    http.HandleFunc("GET /", <span class="type">ctl.sayHello</span>)</li>
-<li>    http.HandleFunc("GET /bye", <span class="type">ctl.sayGoodbye</span>)</li>
+<li>    http.HandleFunc("GET /", ctl.sayHello)</li>
+<li>    http.HandleFunc("GET /bye", ctl.sayGoodbye)</li>
 <li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", nil); err != nil {</li>
 <li>        log.Fatal(err)</li>
 <li>    }</li>
@@ -755,11 +755,11 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li></li>
 <li><span class="keyword">type</span> Controller <span class="keyword">struct</span>{}</li>
 <li></li>
-<li><span class="keyword">func</span> (c *Controller) sayHello(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li><span class="keyword">func</span> (c *Controller) sayHello(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>    fmt.Fprint(w, "Hello, world!")</li>
 <li>}</li>
 <li></li>
-<li><span class="keyword">func</span> (c *Controller) sayGoodbye(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li><span class="keyword">func</span> (c *Controller) sayGoodbye(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>    fmt.Fprint(w, "Goodbye, world!")</li>
 <li>}</li>
 </ol>
@@ -780,8 +780,8 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>    <span class="keyword">var</span> ctl Controller</li>
 <li></li>
 <li>    mux := http.NewServeMux()</li>
-<li>    mux.HandleFunc("GET /", <span class="type">ctl.sayHello</span>)</li>
-<li>    mux.HandleFunc("GET /bye", <span class="type">ctl.sayGoodbye</span>)</li>
+<li>    mux.HandleFunc("GET /", ctl.sayHello)</li>
+<li>    mux.HandleFunc("GET /bye", ctl.sayGoodbye)</li>
 <li></li>
 <li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", mux); err != nil {</li>
 <li>        log.Fatal(err)</li>
@@ -790,11 +790,11 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li></li>
 <li><span class="keyword">type</span> Controller <span class="keyword">struct</span>{}</li>
 <li></li>
-<li><span class="keyword">func</span> (c *Controller) sayHello(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li><span class="keyword">func</span> (c *Controller) sayHello(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>    fmt.Fprint(w, "Hello, world!")</li>
 <li>}</li>
 <li></li>
-<li><span class="keyword">func</span> (c *Controller) sayGoodbye(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li><span class="keyword">func</span> (c *Controller) sayGoodbye(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>    fmt.Fprint(w, "Goodbye, world!")</li>
 <li>}</li>
 </ol>
@@ -834,7 +834,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 </div>
 <div class="column right" style="left: 54vw; width: 46vw"><div class="srcfile"><code><ol start="19">
 <li><span class="keyword">func</span> servePersonById(people []Person) http.HandlerFunc {</li>
-<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>        id := r.PathValue("id")</li>
 <li>        <span class="keyword">for</span> _, person := <span class="keyword">range</span> people {</li>
 <li>            <span class="keyword">if</span> person.Id == id {</li>
@@ -1014,7 +1014,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li></li>
 <li><span class="keyword">import</span> "testing"</li>
 <li></li>
-<li><span class="keyword">func</span> TestSum(t *<span class="type">testing.T</span>) {</li>
+<li><span class="keyword">func</span> TestSum(t *testing.T) {</li>
 <li>    <span class="keyword">if</span> s := Sum(1, 2); s != 3 {</li>
 <li>        t.Errorf("got %v, expect 3", s)</li>
 <li>    }</li>
@@ -1057,10 +1057,10 @@ ok  	github.com/gregoryv/project	0.001s
 <li>    "testing"</li>
 <li>)</li>
 <li></li>
-<li><span class="keyword">func</span> Test_sayHello(t *<span class="type">testing.T</span>) {</li>
+<li><span class="keyword">func</span> Test_sayHello(t *testing.T) {</li>
 <li>    <span class="comment">// prepare response recorder and request</span></li>
 <li>    w := httptest.NewRecorder()</li>
-<li>    r := httptest.NewRequest("GET", "/", <span class="type">http.NoBody</span>)</li>
+<li>    r := httptest.NewRequest("GET", "/", http.NoBody)</li>
 <li></li>
 <li>    <span class="comment">// call handler</span></li>
 <li>    handler := sayHello() <span class="comment">// using the closure design</span></li>
@@ -1069,7 +1069,7 @@ ok  	github.com/gregoryv/project	0.001s
 <li>    <span class="comment">// check result</span></li>
 <li>    resp := w.Result()</li>
 <li>    <span class="keyword">if</span> v := resp.StatusCode; v != 200 {</li>
-<li>        t.Error(<span class="type">resp.Status</span>)</li>
+<li>        t.Error(resp.Status)</li>
 <li>    }</li>
 <li>}</li>
 </ol>
@@ -1092,10 +1092,10 @@ coverage: 60.0% of statements
 ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 </pre><div class="small"><div class="double"><div class="column left" style="width: 42vw"><div class="filename">main_test.go</div>
 <div class="srcfile"><code><ol start="9">
-<li><span class="keyword">func</span> Test_sayHello(t *<span class="type">testing.T</span>) {</li>
+<li><span class="keyword">func</span> Test_sayHello(t *testing.T) {</li>
 <li>    <span class="comment">// prepare response recorder and request</span></li>
 <li>    w := httptest.NewRecorder()</li>
-<li>    r := httptest.NewRequest("GET", "/", <span class="type">http.NoBody</span>)</li>
+<li>    r := httptest.NewRequest("GET", "/", http.NoBody)</li>
 <li></li>
 <li>    <span class="comment">// call handler</span></li>
 <li>    handler := sayHello() <span class="comment">// using the closure design</span></li>
@@ -1104,7 +1104,7 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <li>    <span class="comment">// check result</span></li>
 <li>    resp := w.Result()</li>
 <li>    <span class="keyword">if</span> v := resp.StatusCode; v != 200 {</li>
-<li>        t.Error(<span class="type">resp.Status</span>)</li>
+<li>        t.Error(resp.Status)</li>
 <li>    }</li>
 <li>}</li>
 </ol>
@@ -1120,7 +1120,7 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <li></li>
 <li><span class="keyword">func</span> sayHello() http.HandlerFunc {</li>
 <li>    txt := "Hello, world!"</li>
-<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>        fmt.Fprint(w, txt)</li>
 <li>    }</li>
 <li>}</li>
@@ -1213,7 +1213,7 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <li>    fmt.Print(index)</li>
 <li>}</li>
 <li></li>
-<li><span class="comment">//<span class="keyword">go</span>:embed <span class="type">index.html</span></span></li>
+<li><span class="comment">//<span class="keyword">go</span>:embed index.html</span></li>
 <li><span class="keyword">var</span> index string</li>
 </ol>
 </code></div>
@@ -1241,8 +1241,8 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <li>    }</li>
 <li></li>
 <li>    mux := http.NewServeMux()</li>
-<li>    mux.Handle("POST /room/{number}", BookRoom(<span class="type">h.Rooms</span>))</li>
-<li>    mux.Handle("GET /room", ServeRooms(<span class="type">h.Rooms</span>))</li>
+<li>    mux.Handle("POST /room/{number}", BookRoom(h.Rooms))</li>
+<li>    mux.Handle("GET /room", ServeRooms(h.Rooms))</li>
 <li>    mux.Handle("GET /", ServeHotel(h))</li>
 <li></li>
 <li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", mux); err != nil {</li>
@@ -1265,7 +1265,7 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <div class="f"><div class="filename">main.go (continued)</div>
 <div class="srcfile"><code><ol start="39">
 <li><span class="keyword">func</span> BookRoom(rooms []Room) http.HandlerFunc {</li>
-<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>        number := r.PathValue("number")</li>
 <li>        <span class="comment">// update room state</span></li>
 <li>        <span class="keyword">for</span> i := <span class="keyword">range</span> rooms {</li>
@@ -1279,13 +1279,13 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <li>}</li>
 <li></li>
 <li><span class="keyword">func</span> ServeRooms(rooms []Room) http.HandlerFunc {</li>
-<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>        json.NewEncoder(w).Encode(rooms)</li>
 <li>    }</li>
 <li>}</li>
 <li></li>
 <li><span class="keyword">func</span> ServeHotel(h *Hotel) http.HandlerFunc {</li>
-<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w http.ResponseWriter, r *<span class="type">http.Request</span>) {</li>
+<li>    <span class="keyword">return</span> <span class="keyword">func</span>(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>        json.NewEncoder(w).Encode(h)</li>
 <li>    }</li>
 <li>}</li>
