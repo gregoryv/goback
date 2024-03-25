@@ -48,4 +48,12 @@ func routeSection(p *Deck) {
 			37, // right column width
 		),
 	)
+	p.NewCard(
+		H3("Path value"),
+		TwoCol(
+			LoadLines("examples/pathval.go", 1, 18),
+			LoadLines("examples/pathval.go", 19, -1),
+			46,
+		),
+	)
 }
