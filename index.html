@@ -815,24 +815,27 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li></li>
 <li><span class="keyword">import</span> (</li>
 <li>    "encoding/json"</li>
+<li>    "log"</li>
 <li>    "net/http"</li>
 <li>)</li>
 <li></li>
 <li><span class="keyword">func</span> main() {</li>
+<li>    <span class="comment">// available people, ie. our data store</span></li>
 <li>    people := []Person{</li>
-<li>        <span class="comment">// available people</span></li>
 <li>        {Id: "p1", Name: "John"},</li>
 <li>        {Id: "p2", Name: "Jane"},</li>
 <li>    }</li>
 <li>    mux := http.NewServeMux()</li>
 <li>    mux.Handle("GET /person/{id}", servePersonById(people))</li>
 <li></li>
-<li>    <span class="comment">// ... ListenAndServe omited <span class="keyword">for</span> brevity</span></li>
+<li>    <span class="keyword">if</span> err := http.ListenAndServe(":8080", mux); err != nil {</li>
+<li>        log.Fatal(err)</li>
+<li>    }</li>
 <li>}</li>
 </ol>
 </code></div>
 </div>
-<div class="column right" style="left: 54vw; width: 46vw"><div class="srcfile"><code><ol start="19">
+<div class="column right" style="left: 54vw; width: 46vw"><div class="srcfile"><code><ol start="23">
 <li><span class="keyword">func</span> servePersonById(people []Person) http.HandlerFunc {</li>
 <li>    <span class="keyword">return</span> <span class="keyword">func</span>(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>        id := r.PathValue("id")</li>

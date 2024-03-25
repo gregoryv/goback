@@ -2,19 +2,22 @@ package main
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 )
 
 func main() {
+	// available people, ie. our data store
 	people := []Person{
-		// available people
 		{Id: "p1", Name: "John"},
 		{Id: "p2", Name: "Jane"},
 	}
 	mux := http.NewServeMux()
 	mux.Handle("GET /person/{id}", servePersonById(people))
 
-	// ... ListenAndServe omited for brevity
+	if err := http.ListenAndServe(":8080", mux); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func servePersonById(people []Person) http.HandlerFunc {
