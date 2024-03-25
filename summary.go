@@ -51,11 +51,11 @@ func finallySection(p *Deck) {
 	p.Style(".maybe",
 		"color: #e2e2e2",
 	)
-		p.Style(".later",
+	p.Style(".later",
 		"border: 5px dashed #e2e2e2",
 	)
 	p.NewCard(
-		H3("Next time"),
+		H2("Next time"),
 		Br(),
 		Table(Class("courses"),
 			Tr(
