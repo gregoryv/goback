@@ -26,7 +26,7 @@ func servePersonById(people []Person) http.HandlerFunc {
 				return
 			}
 		}
-		// todo handle not found
+		// ... handle not found
 	}
 }
 

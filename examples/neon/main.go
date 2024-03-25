@@ -10,9 +10,9 @@ func main() {
 	h := &Hotel{
 		Name: "Purple glow",
 		Rooms: []Room{
-			{Number: 1},
-			{Number: 2},
-			{Number: 3},
+			{Number: "1"},
+			{Number: "2"},
+			{Number: "3"},
 		},
 	}
 
@@ -40,8 +40,8 @@ func BookRoom(rooms []Room) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		number := r.PathValue("number")
 		// update room state
-		for i := range rooms {
-			if i != number {
+		for i, room := range rooms {
+			if room.Number != number {
 				continue
 			}
 			rooms[i].Booked = true

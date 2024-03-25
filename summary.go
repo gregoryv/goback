@@ -5,31 +5,40 @@ import . "github.com/gregoryv/web"
 func endSection(p *Deck) {
 	p.Style(".f",
 		"float: left",
-		"margin-right: 1em",
+		"margin-right: 2em",
 	)
 	p.Style(".f>.srcfile",
-		"font-size: 18px",
+		"font-size: 15px",
 	)
 	p.Style(".f>.filename",
 		"margin-bottom: -20px",
 	)
-
 	p.NewCard(
 		H2("Complete example"),
 		Div(Class("f"),
-			Br(),
-			Img(Src("img/neon_design.svg")),
-		),
-		Div(Class("f"),
 			Div(Class("filename"), "main.go"),
 			LoadLines("examples/neon/main.go", 9, 37),
+			Center(
+				Img(Src("img/neon_design.svg")),
+			),
 		),
 		Div(Class("f"),
 			Div(Class("filename"), "main.go (continued)"),
 			LoadLines("examples/neon/main.go", 39, -1),
+			Div(Class("small"),			
+				Shell("$ ls -1 neon/", "examples/neon.tree"),
+			),			
 		),
+		Div(Class("f"),
+			Div(Class("filename"), "main_test.go"),
+			LoadLines("examples/neon/main_test.go", 9, -1),
+			Div(Class("small"),						
+				Shell("$ go test -v -cover .", "examples/neon_cover.out"),
+			),			
+		),		
 	)
-
+	// wip here
+	
 	p.Style(".summary tr td:first-child",
 		"padding-right: 2em",
 	)

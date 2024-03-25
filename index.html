@@ -268,10 +268,10 @@ width: 70%;
 }
 .f {
 float: left;
-margin-right: 1em;
+margin-right: 2em;
 }
 .f>.srcfile {
-font-size: 18px;
+font-size: 15px;
 }
 .f>.filename {
 margin-bottom: -20px;
@@ -842,7 +842,7 @@ go version go1.22.0 linux/amd64</pre><p>For more information refer to <a href="h
 <li>                <span class="keyword">return</span></li>
 <li>            }</li>
 <li>        }</li>
-<li>        <span class="comment">// todo handle not found</span></li>
+<li>        <span class="comment">// ... handle not found</span></li>
 <li>    }</li>
 <li>}</li>
 <li></li>
@@ -1227,16 +1227,15 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 </div>
 <div class="page" id="31"><div class="view"><div class="header"><h2>Complete example</h2>
 </div>
-<div class="slide"><div class="f"><br/><img src="img/neon_design.svg"/></div>
-<div class="f"><div class="filename">main.go</div>
+<div class="slide"><div class="f"><div class="filename">main.go</div>
 <div class="srcfile"><code><ol start="9">
 <li><span class="keyword">func</span> main() {</li>
 <li>    h := &Hotel{</li>
 <li>        Name: "Purple glow",</li>
 <li>        Rooms: []Room{</li>
-<li>            {Number: 1},</li>
-<li>            {Number: 2},</li>
-<li>            {Number: 3},</li>
+<li>            {Number: "1"},</li>
+<li>            {Number: "2"},</li>
+<li>            {Number: "3"},</li>
 <li>        },</li>
 <li>    }</li>
 <li></li>
@@ -1261,6 +1260,7 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <li>}</li>
 </ol>
 </code></div>
+<div class="center"><img src="img/neon_design.svg"/></div>
 </div>
 <div class="f"><div class="filename">main.go (continued)</div>
 <div class="srcfile"><code><ol start="39">
@@ -1268,8 +1268,8 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <li>    <span class="keyword">return</span> <span class="keyword">func</span>(w <span class="type">http.ResponseWriter</span>, r *<span class="type">http.Request</span>) {</li>
 <li>        number := r.PathValue("number")</li>
 <li>        <span class="comment">// update room state</span></li>
-<li>        <span class="keyword">for</span> i := <span class="keyword">range</span> rooms {</li>
-<li>            <span class="keyword">if</span> i != number {</li>
+<li>        <span class="keyword">for</span> i, room := <span class="keyword">range</span> rooms {</li>
+<li>            <span class="keyword">if</span> room.Number != number {</li>
 <li>                continue</li>
 <li>            }</li>
 <li>            rooms[i].Booked = true</li>
@@ -1291,6 +1291,54 @@ ok  	goback/examples/httptest	0.002s	coverage: 60.0% of statements
 <li>}</li>
 </ol>
 </code></div>
+<div class="small"><pre class="shell dark">$ ls -1 neon/<br/>.
+├── go.mod
+├── main.go
+└── main_test.go
+
+0 directories, 3 files
+</pre></div>
+</div>
+<div class="f"><div class="filename">main_test.go</div>
+<div class="srcfile"><code><ol start="9">
+<li><span class="keyword">func</span> Test_main(t *testing.T) {</li>
+<li>    <span class="keyword">go</span> main()</li>
+<li>    <-time.After(time.Millisecond) <span class="comment">// bad test strategy</span></li>
+<li></li>
+<li>    cases := []<span class="keyword">struct</span> {</li>
+<li>        exp int <span class="comment">// expected status code</span></li>
+<li>        *<span class="type">http.Request</span></li>
+<li>    }{</li>
+<li>        {200, newRequest(t, "POST", "http:<span class="comment">//localhost:8080/room/1")},</span></li>
+<li>        {200, newRequest(t, "GET", "http:<span class="comment">//localhost:8080/room")},</span></li>
+<li>        {200, newRequest(t, "GET", "http:<span class="comment">//localhost:8080/")},</span></li>
+<li>    }</li>
+<li>    <span class="keyword">for</span> _, c := <span class="keyword">range</span> cases {</li>
+<li>        resp, err := http.DefaultClient.Do(c.Request)</li>
+<li>        <span class="keyword">if</span> err != nil {</li>
+<li>            t.Fatal(err)</li>
+<li>        }</li>
+<li>        <span class="keyword">if</span> resp.StatusCode != c.exp {</li>
+<li>            t.Error(resp.Status)</li>
+<li>        }</li>
+<li>    }</li>
+<li>}</li>
+<li></li>
+<li><span class="keyword">func</span> newRequest(t *testing.T, method, path string) *<span class="type">http.Request</span> {</li>
+<li>    r, err := http.NewRequest(method, path, http.NoBody)</li>
+<li>    <span class="keyword">if</span> err != nil {</li>
+<li>        t.Fatal(err)</li>
+<li>    }</li>
+<li>    <span class="keyword">return</span> r</li>
+<li>}</li>
+</ol>
+</code></div>
+<div class="small"><pre class="shell dark">$ go test -v -cover .<br/>=== RUN   Test_main
+--- PASS: Test_main (0.00s)
+PASS
+coverage: 94.4% of statements
+ok      github.com/   0.006s  [0m...
+</pre></div>
 </div>
 </div>
 </div>
