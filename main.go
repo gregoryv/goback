@@ -114,7 +114,7 @@ func main() {
 	testSection(&p)
 	viewSection(&p)
 
-	finallySection(&p)
+	endSection(&p)
 	p.Document().SaveAs("index.html")
 }
 

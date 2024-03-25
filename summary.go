@@ -2,7 +2,7 @@ package main
 
 import . "github.com/gregoryv/web"
 
-func finallySection(p *Deck) {
+func endSection(p *Deck) {
 	p.Style(".summary tr td:first-child",
 		"padding-right: 2em",
 	)
