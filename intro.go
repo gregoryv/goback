@@ -3,7 +3,7 @@ package main
 import . "github.com/gregoryv/web"
 
 func introSection(p *Deck) {
-	p.NewCard(
+	/*p.NewCard(
 		H2("Goal"),
 
 		Middle(60,
@@ -14,7 +14,7 @@ func introSection(p *Deck) {
 
 			P(`You will be learn about packages involved and their purpose.`),
 		),
-	)
+	)*/
 	p.Style(".narrow",
 		"display: block",
 		"margin: auto auto",
@@ -54,6 +54,9 @@ func introSection(p *Deck) {
 				Br(),
 
 				Img(Src("img/people.png")),
+
+				P(`They needed a language for writing servers on
+				modern multicore computers`),
 			),
 			40,
 		),
@@ -62,6 +65,8 @@ func introSection(p *Deck) {
 		H2("Quick install"),
 		Middle(70,
 			P(`Download and install Go in the $HOME directory.`),
+			Center(A(Href("https://go.dev/dl"), "https://go.dev/dl")),
+
 			Pre(Class("shell dark"),
 				`$ cd $HOME
 $ wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz

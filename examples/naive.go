@@ -15,11 +15,11 @@ func main() {
 
 func (c *Controller) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	switch {
-	case r.URL.Path == "/" && r.Method == "GET":
-		c.sayHello(w, r)
-
 	case r.URL.Path == "/bye" && r.Method == "GET":
 		c.sayGoodbye(w, r)
+
+	case r.URL.Path == "/" && r.Method == "GET":
+		c.sayHello(w, r)
 
 	default:
 		http.Error(w, "routing failed", http.StatusBadRequest)

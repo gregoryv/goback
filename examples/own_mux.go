@@ -10,8 +10,8 @@ func main() {
 	var ctl Controller
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("GET /", ctl.sayHello)
 	mux.HandleFunc("GET /bye", ctl.sayGoodbye)
+	mux.HandleFunc("GET /", ctl.sayHello)
 
 	if err := http.ListenAndServe(":8080", mux); err != nil {
 		log.Fatal(err)

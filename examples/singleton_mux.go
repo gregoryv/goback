@@ -8,8 +8,8 @@ import (
 
 func main() {
 	var ctl Controller
-	http.HandleFunc("GET /", ctl.sayHello)
 	http.HandleFunc("GET /bye", ctl.sayGoodbye)
+	http.HandleFunc("GET /", ctl.sayHello) // everything else
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}

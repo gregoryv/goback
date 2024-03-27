@@ -52,7 +52,10 @@ func routeSection(p *Deck) {
 		H3("Path value"),
 		TwoCol(
 			LoadLines("examples/pathval.go", 1, 21),
-			LoadLines("examples/pathval.go", 23, -1),
+			Wrap(
+				LoadLines("examples/pathval.go", 23, -1),
+				pictogram("pic_closure.png", "Closure"),
+			),
 			46,
 		),
 	)

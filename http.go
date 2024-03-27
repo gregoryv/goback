@@ -41,7 +41,7 @@ func httpExamples(p *Deck) {
 			Wrap(
 
 				P(`Closure design uses named functions returning a
-                http.Handler.`),
+                http.HandlerFunc.`),
 
 				pictogram("pic_closure.png", "Closure"),
 			),
@@ -51,7 +51,7 @@ func httpExamples(p *Deck) {
 	p.NewCard(
 		H3("Method"),
 		TwoCol(
-			Load("examples/method.go"),
+			LoadLines("examples/method.go", 9, -1),
 			Wrap(
 
 				P(`Method design declares types that implement
@@ -71,7 +71,7 @@ func httpExamples(p *Deck) {
 			Wrap(
 
 				P(`Combo design declares types with multiple methods
-				with htt.HandlerFunc signature or return one (closure).`),
+				with http.HandlerFunc signature or return one (closure).`),
 
 				pictogram("pic_combined_closure.png", "Combo"),
 			),

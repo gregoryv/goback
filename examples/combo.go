@@ -7,7 +7,9 @@ import (
 )
 
 func main() {
-	var ctl Controller
+	ctl := Controller{
+		// complex setup
+	}
 
 	if err := http.ListenAndServe(":8080", ctl.sayHello()); err != nil {
 		log.Fatal(err)

@@ -8,8 +8,8 @@ func main() {
 	fmt.Println(painted(color(2)))
 }
 
-func painted(value fmt.Stringer) string {
-	return fmt.Sprintf("Painted: %s", value.String())
+func painted(val fmt.Stringer) string {
+	return fmt.Sprintf("%T.String(): %s", val, val.String())
 }
 
 type color int

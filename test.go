@@ -29,7 +29,14 @@ func testSection(p *Deck) {
 		H3("http/httptest"),
 		TwoCol(
 			Load("examples/httptest/main_test.go"),
-			P(`Quick unit test of specific handlers using httptest.Recorder`),
+			Wrap(
+				P(`Quick unit test of specific handlers using httptest.Recorder`),
+				Ol(
+					Li("setup"),
+					Li("call handler"),
+					Li("check response"),
+				),
+			),
 			40,
 		),
 	)

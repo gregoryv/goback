@@ -5,10 +5,10 @@ import . "github.com/gregoryv/web"
 func endSection(p *Deck) {
 	p.Style(".f",
 		"float: left",
-		"margin-right: 2em",
+		"margin-right: 0.1em",
 	)
 	p.Style(".f>.srcfile",
-		"font-size: 15px",
+		"font-size: 17px",
 	)
 	p.Style(".f>.filename",
 		"margin-bottom: -20px",

@@ -7,7 +7,8 @@ import (
 )
 
 func main() {
-	if err := http.ListenAndServe(":8080", sayHello()); err != nil {
+	err := http.ListenAndServe(":8080", sayHello())
+	if err != nil {
 		log.Fatal(err)
 	}
 }

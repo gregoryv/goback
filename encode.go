@@ -16,16 +16,16 @@ func encodeSection(p *Deck) {
     quantity into a given format.  E.g. {uuencode}.
 `),
 
-			P("In Go this means convert ", Code("type X"), " to ", Code("[]byte")),
+			P("In Go this equals to marshal ", Code("type X"), " to ", Code("[]byte")),
 		),
 	)
 
 	p.NewCard(
-		H3("Encoding/json"),
+		H3("encoding/json"),
 		TwoCol(
 			Load("examples/encoding.go"),
 			Shell("$ go run ./examples/encoding.go", "./examples/encoding.json"),
-			40,
+			50,
 		),
 	)
 	p.NewCard(

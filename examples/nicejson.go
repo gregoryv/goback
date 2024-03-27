@@ -9,6 +9,8 @@ func main() {
 	user := Contact{
 		Firstname: "John",
 		Lastname:  "Doe",
+		Age:       23,
+		Alive:     true,
 	}
 	data, _ := json.MarshalIndent(user, "", "  ")
 	fmt.Print(string(data))
@@ -17,4 +19,6 @@ func main() {
 type Contact struct {
 	Firstname string
 	Lastname  string
+	Age       int
+	Alive     bool
 }

@@ -38,8 +38,9 @@ func viewSection(p *Deck) {
 					"Package embed provides access to files embedded in the running Go program.",
 					"https://pkg.go.dev/embed",
 				),
+				ShellEscaped("$ go run examples/embed.go", "examples/embed.out"),
 			),
-			40,
+			47,
 		),
 	)
 }

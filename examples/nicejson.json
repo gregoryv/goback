@@ -1,4 +1,6 @@
 {
   "Firstname": "John",
-  "Lastname": "Doe"
+  "Lastname": "Doe",
+  "Age": 23,
+  "Alive": true
 }

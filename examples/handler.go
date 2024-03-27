@@ -12,4 +12,6 @@ type Handler interface {
 // signature, HandlerFunc(f) is a Handler that calls f.
 type HandlerFunc func(ResponseWriter, *Request)
 
-func (f HandlerFunc) ServeHTTP(w ResponseWriter, r *Request)
+func (f HandlerFunc) ServeHTTP(w ResponseWriter, r *Request) {
+	f(w, r)
+}
