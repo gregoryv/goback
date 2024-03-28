@@ -38,8 +38,11 @@ func introSection(p *Deck) {
 			P(`Robert Griesemer, Ken Thompson and Rob Pike are the
 		    original authors of the Go language which is currently
 		    supervised by Russ Cox. Ian wrote the first compiler as a
-		    frontend to gcc.`),
-
+		    frontend to gcc. `,
+			A("Read more on their (FAQ)",
+				Href(				"https://go.dev/doc/faq"),
+			),
+			),
 			Center(
 
 				Br(),
@@ -74,7 +77,12 @@ $ wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
 $ tar xvfz go1.22.0.linux-amd64.tar.gz
 $ export PATH="$PATH:$HOME/go/bin"
 $ go version
-go version go1.22.0 linux/amd64`,
+go version go1.22.0 linux/amd64
+
+$ ls -1 $HOME/go/bin
+go
+gofmt
+`,
 			),
 
 			P("For more information refer to ",
