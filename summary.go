@@ -80,14 +80,17 @@ func endSection(p *Deck) {
 		"text-align: center",
 	)
 	p.Style(".done",
-		"color: #e2e2e2",
-		"border: 5px double #e2e2e2",
+		"color: #5bc9e2",
+		"border-color: #5bc9e2",
 	)
 	p.Style(".maybe",
 		"color: #e2e2e2",
 	)
 	p.Style(".later",
 		"border: 5px dashed #e2e2e2",
+	)
+	p.Style(".courses td ol",
+		"margin-left: 1em",
 	)
 	p.NewCard(
 		H2("Next time"),
@@ -96,6 +99,14 @@ func endSection(p *Deck) {
 			Tr(
 				Td(
 					Div(Class("course done"), "Backend development"),
+					Ol(Class("done"),
+						Li("Go concepts"),
+						Li("Project structure"),
+						Li("HTTP routing"),
+						Li("Handler design"),
+						Li("Test handlers"),
+						Li("JSON Encoding"),
+					),
 				),
 
 				Td(

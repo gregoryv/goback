@@ -320,14 +320,17 @@ padding: 1em 1em;
 text-align: center;
 }
 .done {
-color: #e2e2e2;
-border: 5px double #e2e2e2;
+color: #5bc9e2;
+border-color: #5bc9e2;
 }
 .maybe {
 color: #e2e2e2;
 }
 .later {
 border: 5px dashed #e2e2e2;
+}
+.courses td ol {
+margin-left: 1em;
 }
 </style>
 </head>
@@ -1475,6 +1478,14 @@ ok      github.com/   0.006s  [0m...
 </div>
 <div class="slide"><br/><table class="courses">
 <tr><td><div class="course done">Backend development</div>
+<ol class="done">
+<li>Go concepts</li>
+<li>Project structure</li>
+<li>HTTP routing</li>
+<li>Handler design</li>
+<li>Test handlers</li>
+<li>JSON Encoding</li>
+</ol>
 </td><td><div class="course">General problems</div>
 <ol>
 <li>Test driven development</li>
