@@ -83,4 +83,53 @@ go version go1.22.0 linux/amd64`,
 			),
 		),
 	)
+	p.Style(".structures",
+		"width: 100%",
+	)
+	p.Style(".structures td",
+		"vertical-align: top",
+		"padding-right: 1em",
+	)
+	p.Style(".structures td *",
+		"font-size: 0.7em",
+	)
+	p.Style(".structures, td.wide",
+		"width: 100%",
+	)
+
+	p.NewCard(
+		H2("Project structure"),
+
+		Middle(80,
+
+			Table(Class("structures wide"),
+				Tr(
+					Td(
+						Shell("$ cd neon; tree/", "examples/neon.tree"),
+						quote(
+							"A basic Go package has all its code in the project’s root directory.",
+							"https://go.dev/doc/modules/layout",
+						),
+					),
+					Td(
+						Shell("$ cd neon/; tree", "examples/neon2.tree"),
+					),
+					Td(
+						Shell("$ cd neon/; tree", "examples/neon3.tree"),
+
+						quote("Server project",
+							"https://go.dev/doc/modules/layout#server-project",
+						),
+					),
+					Td(Class("wide"),
+						Shell("$ cd neon/; tree", "examples/neon4.tree"),
+
+						quote("Don't waste a good name",
+							"Gregory Vinčić",
+						),
+					),
+				),
+			),
+		),
+	)
 }

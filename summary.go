@@ -26,7 +26,7 @@ func endSection(p *Deck) {
 			Div(Class("filename"), "main.go (continued)"),
 			LoadLines("examples/neon/main.go", 39, -1),
 			Div(Class("small"),
-				Shell("$ ls -1 neon/", "examples/neon.tree"),
+				Shell("$ cd neon/; tree", "examples/neon.tree"),
 			),
 		),
 		Div(Class("f"),
