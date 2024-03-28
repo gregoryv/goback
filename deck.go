@@ -267,6 +267,7 @@ func (p *Deck) Document() *Page {
 	return NewPage(
 		Html(
 			Head(
+				Meta(Charset("utf-8")),
 				Title(
 					p.Title,
 				),
