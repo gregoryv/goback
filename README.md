@@ -1,22 +1,11 @@
-Go course at Assaabloy
+# Go: Introduction backend development
 
-March 28, 14.00-16.00
+Presented March 28, 14.00-16.00 on ASSA ABLOY
 
-Introduction backend development in Golang.
-
-You will learn how to approach designing a solution using package
-provided by the language; including
-
-Packages covered
-
+- structure projects
+- modules, packages and interfaces
+- functions as first class citizens, closures
 - net/http for routing
 - embed and html/template for presentation
 - testing and httptest for verification
-
-Concepts
-
-- functions as first class citizens
-- structure projects
-
-
 
