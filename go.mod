@@ -1,4 +1,4 @@
-module goback
+module github.com/gregoryv/goback
 
 go 1.22.0
 
